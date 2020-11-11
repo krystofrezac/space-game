@@ -1,16 +1,17 @@
 import { HEIGHT, WIDTH } from "./constants";
 import { setCursors } from "./cursors";
 import { setPlayer } from "./player";
+import { createGrid, getGrids, setGrids } from "./grids";
 
 function create(): void {
-  this.add
-    .grid(WIDTH / 2, HEIGHT / 2, 1000, 1000, 100, 100, 0x000000)
-    .setOutlineStyle(0x0f0f0f);
+  createGrid(this, WIDTH / 2, HEIGHT / 2);
 
   const borders = this.physics.add.staticGroup();
   borders.create(0, 50000, "border");
 
-  const player = this.physics.add.sprite(WIDTH / 2, HEIGHT / 2, "player");
+  const player = this.physics.add
+    .sprite(WIDTH / 2, HEIGHT / 2, "player")
+    .setDepth(50);
 
   player.body.maxVelocity.x = 1000;
   player.body.maxVelocity.y = 1000;
