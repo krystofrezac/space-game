@@ -22,6 +22,24 @@ const io: Server = socketio(server, {
 });
 
 let players: Player[] = [];
+const vertices = [
+  { x: 26, y: 512 - 176 },
+  { x: 190, y: 512 - 184 },
+  { x: 308, y: 512 - 185 },
+  { x: 473, y: 512 - 175 },
+  { x: 454, y: 512 - 263 },
+  { x: 318, y: 512 - 308 },
+  { x: 268, y: 512 - 329 },
+  { x: 285, y: 512 - 419 },
+  { x: 244, y: 512 - 480 },
+  { x: 207, y: 512 - 418 },
+  { x: 222, y: 512 - 326 },
+  { x: 182, y: 512 - 308 },
+  { x: 45, y: 512 - 263 },
+];
+let center = matter.Vertices.centre(vertices);
+center = matter.Vector.create(center.x, 512 - center.y);
+console.log(center);
 
 setInterval(() => {
   if (players.length > 0) {
@@ -68,16 +86,24 @@ setInterval(() => {
           getAngularVelocity(-0.001, 0.05)
         );
       }
+
+      const getPosition = (position: matter.Vector): matter.Vector => {
+        const newPosition = matter.Vector.clone(position);
+        newPosition.x += 256 - center.x;
+        newPosition.y += 256 - center.y;
+
+        return newPosition;
+      };
       player.socket.emit("update", {
         player: {
-          position: player.body.position,
+          position: getPosition(player.body.position),
           angle: player.body.angle,
         },
         objects: players
           .filter((p) => p.id !== player.id)
           .map((p) => ({
             type: "PLAYER",
-            position: p.body.position,
+            position: getPosition(p.body.position),
             angle: p.body.angle,
           })),
       });
@@ -88,15 +114,7 @@ setInterval(() => {
 let objectId = 0;
 
 io.on("connection", (socket) => {
-  const vertices = [
-    { x: 247, y: 177 },
-    { x: 46, y: 249 },
-    { x: 24, y: 337 },
-    { x: 476, y: 334 },
-    { x: 451, y: 251 },
-  ];
   const body = matter.Body.create({
-    position: matter.Vertices.centre(vertices),
     vertices,
   });
   matter.World.add(engine.world, [body]);
