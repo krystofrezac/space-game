@@ -1,9 +1,9 @@
 import Phaser from "phaser";
 
-let player: Phaser.GameObjects.Sprite;
+let player: Phaser.GameObjects.Image;
 
-export const setPlayer = (newPlayer: Phaser.GameObjects.Sprite): void => {
+export const setPlayer = (newPlayer: Phaser.GameObjects.Image): void => {
   player = newPlayer;
 };
 
-export const getPlayer = (): Phaser.GameObjects.Sprite => player;
+export const getPlayer = (): Phaser.GameObjects.Image => player;

@@ -30,7 +30,7 @@ export const createGrid = (
     gameObject: phaser.add
       .grid(x, y, WIDTH * 2, HEIGHT * 2, 100, 100, 0x000000)
       .setOutlineStyle(0x0f0f0f)
-      .setDepth(1),
+      .setDepth(0),
   });
 };
 
