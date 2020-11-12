@@ -18,6 +18,7 @@ socket.on("update", (payload) => {
   const player = getPlayer();
   if (player) {
     player.setPosition(payload.position.x, payload.position.y);
+    player.angle = Phaser.Math.RadToDeg(payload.angle);
     setPlayer(player);
   }
 });
