@@ -4,7 +4,6 @@ import express from "express";
 import { Server } from "socket.io";
 import matter from "matter-js";
 
-import playerBodyVertices from "./player/bodyVerticies";
 import Player, { Direction, Rotation } from "./player";
 
 const socketio = require("socket.io");
@@ -89,7 +88,17 @@ setInterval(() => {
 let objectId = 0;
 
 io.on("connection", (socket) => {
-  const body = matter.Bodies.circle(256, 256, 243);
+  const vertices = [
+    { x: 247, y: 177 },
+    { x: 46, y: 249 },
+    { x: 24, y: 337 },
+    { x: 476, y: 334 },
+    { x: 451, y: 251 },
+  ];
+  const body = matter.Body.create({
+    position: matter.Vertices.centre(vertices),
+    vertices,
+  });
   matter.World.add(engine.world, [body]);
 
   const player = new Player({ id: objectId++, socket, body });
