@@ -87,16 +87,24 @@ setInterval(() => {
         );
       }
 
+      const getPosition = (body: matter.Body): matter.Vector => {
+        const newPosition = matter.Vector.clone(body.position);
+        newPosition.x += (256 - center.x) * Math.cos(body.angle);
+        newPosition.y += (256 - center.y) * Math.sin(body.angle);
+
+        return newPosition;
+      };
+
       player.socket.emit("update", {
         player: {
-          position: player.body.position,
+          position: getPosition(player.body),
           angle: player.body.angle,
         },
         objects: players
           .filter((p) => p.id !== player.id)
           .map((p) => ({
             type: "PLAYER",
-            position: p.body.position,
+            position: getPosition(p.body),
             angle: p.body.angle,
           })),
       });
