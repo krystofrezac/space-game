@@ -38,8 +38,8 @@ const vertices = [
   { x: 45, y: 512 - 263 },
 ];
 let center = matter.Vertices.centre(vertices);
-center = matter.Vector.create(center.x, 512 - center.y);
-console.log(center);
+center = matter.Vector.create(center.x, center.y);
+console.log("center", center);
 
 setInterval(() => {
   if (players.length > 0) {
@@ -87,23 +87,16 @@ setInterval(() => {
         );
       }
 
-      const getPosition = (position: matter.Vector): matter.Vector => {
-        const newPosition = matter.Vector.clone(position);
-        newPosition.x += 256 - center.x;
-        newPosition.y += 256 - center.y;
-
-        return newPosition;
-      };
       player.socket.emit("update", {
         player: {
-          position: getPosition(player.body.position),
+          position: player.body.position,
           angle: player.body.angle,
         },
         objects: players
           .filter((p) => p.id !== player.id)
           .map((p) => ({
             type: "PLAYER",
-            position: getPosition(p.body.position),
+            position: p.body.position,
             angle: p.body.angle,
           })),
       });
