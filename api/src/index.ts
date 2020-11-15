@@ -114,9 +114,7 @@ setInterval(() => {
 let objectId = 0;
 
 io.on("connection", (socket) => {
-  const body = matter.Body.create({
-    vertices,
-  });
+  const body = matter.Bodies.fromVertices(center.x, center.y, [vertices]);
   matter.World.add(engine.world, [body]);
 
   const player = new Player({ id: objectId++, socket, body });
