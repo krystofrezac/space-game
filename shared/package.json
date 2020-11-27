@@ -1,0 +1,7 @@
+{
+  "name": "@space-game/shared",
+  "version": "1.0.0",
+  "dependencies": {
+    "@krystofrezac/coding-standard": "ssh://git@github.com:krystofrezac/coding-standard.git"
+  }
+}

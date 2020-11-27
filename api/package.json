@@ -1,13 +1,14 @@
 {
   "name": "@space-game/api",
   "version": "1.0.0",
-  "main": "src/index.ts",
+  "main": "src/old/index.ts",
   "scripts": {
     "build": " rimraf dist  && tsc",
     "dev": "nodemon --exec ts-node src/index.ts"
   },
   "dependencies": {
     "@krystofrezac/coding-standard": "ssh://git@github.com:krystofrezac/coding-standard.git",
+    "@space-game/shared": "1.0.0",
     "express": "^4.17.1",
     "matter-js": "^0.14.2",
     "poly-decomp": "^0.3.0",

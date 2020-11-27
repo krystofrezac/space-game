@@ -6,6 +6,7 @@
   "author": "Kryštof Řezáč <krystofrezac@gmail.com>",
   "workspaces": [
     "app",
-    "api"
+    "api",
+    "shared"
   ]
 }

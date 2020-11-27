@@ -11,7 +11,7 @@ import { getObjects, setObjects } from "./objects";
 
 const socket: Socket = io(":4000");
 setSocket(socket);
-socket.on("connected", () => {
+socket.on("connect", () => {
   console.log("connected");
 });
 
