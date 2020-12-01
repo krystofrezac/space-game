@@ -11,8 +11,8 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        exclude: /node_modules/,
-        loaders: ["babel-loader"],
+        exclude: [/node_modules/],
+        loaders: ["babel-loader", "ts-loader"],
       },
       {
         test: [/\.vert$/, /\.frag$/],

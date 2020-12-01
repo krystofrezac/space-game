@@ -29,7 +29,9 @@ const io: Server = new Server().listen(server, {
 io.on(CONNECT, (socket: Socket) => {
   connections.push(new Connection(socket));
 
-  socket.on(ROOMS, rooms);
+  socket.on(ROOMS, (data, callback) => {
+    callback(["a", "b"]);
+  });
   socket.on(CREATE_ROOM, createRoom);
   socket.on(MOVE, move);
   socket.on(ROTATE, rotate);
