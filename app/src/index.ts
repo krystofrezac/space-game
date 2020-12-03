@@ -11,3 +11,5 @@ socket.on(CONNECT, () => {
     console.log("rooms", rooms);
   });
 });
+
+console.log("ahoj");
