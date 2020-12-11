@@ -5,8 +5,9 @@
   "repository": "git@github.com:krystofrezac/space-game.git",
   "author": "Kryštof Řezáč <krystofrezac@gmail.com>",
   "workspaces": [
-    "app",
+    "game",
     "api",
+    "app",
     "shared"
   ]
 }

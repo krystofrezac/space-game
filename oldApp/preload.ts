@@ -1,5 +1,5 @@
-import borderImg from "../app/src/assets/border.png";
-import playerImg from "../app/src/assets/player.png";
+import borderImg from "../game/src/assets/border.png";
+import playerImg from "../game/src/assets/player.png";
 
 function preload(): void {
   this.load.image("border", borderImg);
