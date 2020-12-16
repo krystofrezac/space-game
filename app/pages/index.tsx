@@ -1,6 +1,7 @@
+import React from 'react';
 import ROOMS from '@space-game/shared/resolvers/rooms';
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <div>
       Imported modules from another workspace:
