@@ -1,11 +1,11 @@
-import ROOMS from "@space-game/shared/resolvers/rooms";
+import ROOMS from '@space-game/shared/resolvers/rooms';
 
-export default function Home() {
+const Home = () => {
   return (
     <div>
       Imported modules from another workspace:
-
-        <div>a {ROOMS}</div>
+      <div>{ROOMS}</div>
     </div>
-  )
-}
+  );
+};
+export default Home;
