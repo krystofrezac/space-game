@@ -1,5 +1,5 @@
 {
-  "name": "@space-game/shared",
+  "name": "@space-game/bar",
   "version": "1.0.0",
   "license": "ISC",
   "peerDependencies": {

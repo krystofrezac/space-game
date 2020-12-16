@@ -8,6 +8,7 @@
     "game",
     "api",
     "app",
-    "shared"
+    "shared",
+    "bar"
   ]
 }
