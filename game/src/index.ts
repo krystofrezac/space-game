@@ -8,7 +8,7 @@ const socket = io(":4000");
 setSocket(socket);
 socket.on(CONNECT, () => {
   socket.emit(ROOMS, {}, (rooms: string[]) => {
-    console.log("rooms", rooms);
+    console.log("room", rooms);
   });
 });
 

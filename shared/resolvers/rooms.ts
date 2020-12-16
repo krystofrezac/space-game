@@ -1,7 +1,7 @@
-const ROOMS = "rooms";
+const ROOMS = 'room';
 
-export interface Rooms {
-  callback: (rooms: string[]) => void;
-}
+export type RoomsCallback = (
+  rooms: { id: string; name: string; connected: number }[],
+) => void;
 
 export default ROOMS;

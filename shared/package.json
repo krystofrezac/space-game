@@ -2,7 +2,10 @@
   "name": "@space-game/shared",
   "version": "1.0.0",
   "license": "ISC",
-  "peerDependencies": {
-    "react": "^16.0.0"
+  "scripts": {
+    "fix": "yarn ts && yarn eslint"
+  },
+  "devDependencies": {
+    "@krystofrezac/coding-standard": "ssh://git@github.com:krystofrezac/coding-standard.git"
   }
 }

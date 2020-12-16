@@ -1,6 +1,6 @@
-const CREATE_ROOM = "createRoom";
+const CREATE_ROOM = 'createRoom';
 
-export interface CreateRoom {
+export interface CreateRoomData {
   name: string;
 }
 

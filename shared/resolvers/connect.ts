@@ -1,3 +1,3 @@
-const CONNECT = "connect";
+const CONNECT = 'connect';
 
 export default CONNECT;
