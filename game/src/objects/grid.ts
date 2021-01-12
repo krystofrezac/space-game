@@ -32,28 +32,26 @@ export const checkGrids = (phaser: Phaser.Scene): void => {
 
   const checkPoints = [
     new Phaser.Math.Vector2(player.x, player.y),
-    /* new Phaser.Math.Vector2(player.x - config.grid.width, 0),
+    new Phaser.Math.Vector2(player.x - config.grid.width, player.y),
     new Phaser.Math.Vector2(
       player.x - config.grid.width,
       player.y + config.grid.height
     ),
-    new Phaser.Math.Vector2(0, player.y + config.grid.height),
+    new Phaser.Math.Vector2(player.x, player.y + config.grid.height),
     new Phaser.Math.Vector2(
       player.x + config.grid.width,
       player.y + config.grid.height
     ),
-    new Phaser.Math.Vector2(player.x + config.grid.width, 0),
+    new Phaser.Math.Vector2(player.x + config.grid.width, player.y),
     new Phaser.Math.Vector2(
       player.x + config.grid.width,
       player.y - config.grid.height
     ),
-    new Phaser.Math.Vector2(0, player.y - config.grid.height),
+    new Phaser.Math.Vector2(player.x, player.y - config.grid.height),
     new Phaser.Math.Vector2(
       player.x - config.grid.width,
       player.y - config.grid.height
     ),
-    
-     */
   ];
 
   checkPoints.forEach((checkPoint) => {
