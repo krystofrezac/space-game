@@ -1,1 +1,0 @@
-module.exports={"production":false,"port":3000,"apiURL":"http://localhost:4000"}

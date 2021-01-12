@@ -1,9 +1,9 @@
-const ROTATE = "rotate";
+const ROTATE = 'rotate';
 
 export enum Rotation {
-  "NONE",
-  "RIGHT",
-  "LEFT",
+  'NONE',
+  'RIGHT',
+  'LEFT',
 }
 
 export interface Rotate {
