@@ -13,21 +13,8 @@ const updatePositions = (): void => {
   const players = getPlayers();
 
   players.forEach(player => {
-    const getAngularVelocity = (maxSpeed: number): number => {
-      const prevAngularVelocity = player.body.angularVelocity;
-      const angularVelocity =
-        prevAngularVelocity + player.rotation * config.angularAcceleration;
-
-      if (Math.abs(angularVelocity) > maxSpeed) {
-        return prevAngularVelocity;
-      }
-
-      return angularVelocity;
-    };
-    matter.Body.setAngularVelocity(
-      player.body,
-      getAngularVelocity(config.maxAngularSpeed),
-    );
+    matter.Body.setVelocity(player.body, player.getVelocity());
+    matter.Body.setAngularVelocity(player.body, player.getAngularVelocity());
 
     const args: UpdatePositions = {
       player: {

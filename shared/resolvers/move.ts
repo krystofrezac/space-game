@@ -1,13 +1,7 @@
-const MOVE = "move";
-
-export enum Direction {
-  "NONE",
-  "FORWARD",
-  "BACK",
-}
+const MOVE = 'move';
 
 export interface Move {
-  direction: Direction;
+  direction: number;
 }
 
 export default MOVE;

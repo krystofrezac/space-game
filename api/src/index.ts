@@ -25,7 +25,7 @@ io.on(CONNECT, (socket: Socket) => {
     deleteConnection(player.connection.id);
   });
 
-  socket.on(MOVE, move);
+  socket.on(MOVE, move(player));
   socket.on(ROTATE, rotate(player));
   socket.on(SHOOT, shoot);
 });
