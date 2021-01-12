@@ -26,5 +26,10 @@ export const getPlayerBodyCenter = (): matter.Vector => {
 export const getPlayerBody = (): matter.Body => {
   const center = getPlayerBodyCenter();
 
-  return matter.Bodies.fromVertices(center.x, center.y, [vertices]);
+  const body = matter.Bodies.fromVertices(center.x, center.y, [vertices]);
+  body.friction = 0;
+  body.frictionAir = 0;
+  body.frictionStatic = 0;
+
+  return body;
 };

@@ -15,6 +15,7 @@ import rotate from './resolvers/rotate';
 import shoot from './resolvers/shoot';
 import connect from './resolvers/connect';
 import updatePositions from './resolvers/updatePositions';
+import config from './config';
 
 io.on(CONNECT, (socket: Socket) => {
   const player = connect(socket);
@@ -25,13 +26,13 @@ io.on(CONNECT, (socket: Socket) => {
   });
 
   socket.on(MOVE, move);
-  socket.on(ROTATE, rotate);
+  socket.on(ROTATE, rotate(player));
   socket.on(SHOOT, shoot);
 });
 
 setInterval(() => {
   updatePositions();
-}, 1000 / 60);
+}, config.delta);
 
 server.listen(4000, () => {
   console.log('server is running on port 4000');

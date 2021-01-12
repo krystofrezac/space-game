@@ -5,7 +5,7 @@ import { setSocket } from "../stores/socket";
 
 import updatePositions from "./updatePositions";
 
-const startNetworkCommunication = () => {
+const startNetworkCommunication = (): void => {
   const socket = io(":4000");
   setSocket(socket);
   socket.on(UPDATE_POSITIONS, updatePositions);

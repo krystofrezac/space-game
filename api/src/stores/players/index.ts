@@ -1,6 +1,5 @@
 import matter, { Body } from 'matter-js';
 import { Direction } from '@space-game/shared/resolvers/move';
-import { Rotation } from '@space-game/shared/resolvers/rotate';
 
 import { Connection } from '../connection';
 import engine from '../../matter';
@@ -15,7 +14,7 @@ export class Player {
     this.connection = initialValues.connection;
     this.body = initialValues.body;
     this.direction = Direction.NONE;
-    this.rotation = Rotation.NONE;
+    this.rotation = 0;
     this.roomId = initialValues.roomId;
 
     matter.World.add(engine.world, [this.body]);
@@ -31,7 +30,7 @@ export class Player {
 
   public direction: Direction;
 
-  public rotation: Rotation;
+  public rotation: number;
 }
 
 const players: Player[] = [];
