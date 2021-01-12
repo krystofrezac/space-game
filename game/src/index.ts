@@ -1,18 +1,10 @@
-import { io } from "socket.io-client";
-import CONNECT from "@space-game/shared/resolvers/connect";
 import Phaser from "phaser";
 
 import config from "./config";
-import { setSocket } from "./stores/socket";
 import preload from "./preload";
 import create from "./create";
 import update from "./update";
-
-const socket = io(":4000");
-setSocket(socket);
-socket.on(CONNECT, () => {
-  console.log("connected");
-});
+import startNetworkCommunication from "./network";
 
 const phaserConfig: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -30,3 +22,5 @@ const phaserConfig: Phaser.Types.Core.GameConfig = {
 };
 
 const game = new Phaser.Game(phaserConfig);
+
+startNetworkCommunication();

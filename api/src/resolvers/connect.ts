@@ -18,13 +18,15 @@ const connect = (socket: Socket): Player => {
   }
   [selectedRoom] = rooms;
 
-  return addPlayer(
-    new Player({
-      roomId: selectedRoom.id,
-      connection,
-      body: getPlayerBody(),
-    }),
-  );
+  const player = new Player({
+    roomId: selectedRoom.id,
+    connection,
+    body: getPlayerBody(),
+  });
+
+  addPlayer(player);
+
+  return player;
 };
 
 export default connect;

@@ -11,7 +11,7 @@ const updatePositions = (): void => {
     const args: UpdatePositions = {
       player: {
         position: player.body.position,
-        angle: player.body.angle,
+        angle: player.body.angle + Math.sin(new Date().getSeconds() / 10),
       },
     };
 
