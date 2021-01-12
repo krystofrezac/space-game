@@ -1,6 +1,9 @@
 {
   "name": "@space-game/app",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.18.3"
+  },
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
