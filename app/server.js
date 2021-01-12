@@ -31,8 +31,9 @@ const createConfig = () => {
   server.get('*', (req, res) => handle(req, res));
 
   await server.listen(port);
+  // eslint-disable-next-line no-console
   console.log(
     chalk.green('ready'),
-    `started server on http://localhost:${port}`,
-  ); // eslint-disable-line no-console
+    `- started server on http://localhost:${port}`,
+  );
 })();
