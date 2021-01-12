@@ -24,6 +24,7 @@ export const getPlayerBody = (): matter.Body => {
     playerBodyCenter.y,
     [vertices],
   );
+
   body.friction = 0;
   body.frictionAir = 0;
   body.frictionStatic = 0;
