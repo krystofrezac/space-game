@@ -5,30 +5,37 @@ import { getPlayer } from "../stores/player";
 
 const grids: Phaser.GameObjects.Grid[] = [];
 
+let gridIndex = 0;
 export const createGrid = (
   phaser: Phaser.Scene,
   x: number,
   y: number
-): void => {
-  grids.push(
-    phaser.add
-      .grid(
-        x,
-        y,
-        config.window.width * 2,
-        config.window.height * 2,
-        100,
-        100,
-        0x000000
-      )
-      .setOutlineStyle(0x0f0f0f)
-      .setDepth(config.depths.grid)
-  );
+): Phaser.GameObjects.Grid => {
+  const grid = phaser.add
+    .grid(
+      x,
+      y,
+      config.window.width * 2,
+      config.window.height * 2,
+      100,
+      100,
+      0x000000
+    )
+    .setOutlineStyle(0x0f0f0f)
+    .setDepth(config.depths.grid);
+
+  grid.name = `grid-${gridIndex}`;
+  grids.push(grid);
+  gridIndex++;
+
+  return grid;
 };
 
 export const checkGrids = (phaser: Phaser.Scene): void => {
   const player = getPlayer();
   if (!player) return;
+
+  const activeGrids: string[] = [];
 
   const checkPoints = [
     new Phaser.Math.Vector2(player.x, player.y),
@@ -56,12 +63,16 @@ export const checkGrids = (phaser: Phaser.Scene): void => {
 
   checkPoints.forEach((checkPoint) => {
     if (
-      !grids.some((grid) =>
-        grid.getBounds().contains(checkPoint.x, checkPoint.y)
-      )
-    ) {
-      console.log(player.x, player.y, checkPoint.x, checkPoint.y);
+      !grids.some((grid): boolean => {
+        if (grid.getBounds().contains(checkPoint.x, checkPoint.y)) {
+          activeGrids.push(grid.name);
 
+          return true;
+        }
+
+        return false;
+      })
+    ) {
       const getX = (x: number): number =>
         checkPoint.x -
         (checkPoint.x % config.grid.width) +
@@ -72,18 +83,31 @@ export const checkGrids = (phaser: Phaser.Scene): void => {
         (config.grid.height / 2) * y;
 
       if (checkPoint.x <= 0 && checkPoint.y >= 0) {
-        console.log(getX(-1), getY(1));
-        createGrid(phaser, getX(-1), getY(1));
+        activeGrids.push(createGrid(phaser, getX(-1), getY(1)).name);
       } else if (checkPoint.x <= 0 && checkPoint.y <= 0) {
-        console.log(getX(-1), getY(-1));
-        createGrid(phaser, getX(-1), getY(-1));
+        activeGrids.push(createGrid(phaser, getX(-1), getY(-1)).name);
       } else if (checkPoint.x >= 0 && checkPoint.y >= 0) {
-        console.log(getX(1), getY(1));
-        createGrid(phaser, getX(1), getY(1));
+        activeGrids.push(createGrid(phaser, getX(1), getY(1)).name);
       } else if (checkPoint.x >= 0 && checkPoint.y <= 0) {
-        console.log(getX(1), getY(-1));
-        createGrid(phaser, getX(1), getY(-1));
+        activeGrids.push(createGrid(phaser, getX(1), getY(-1)).name);
       }
     }
   });
+
+  const inactiveGrids = grids.filter(
+    (grid) => !activeGrids.some((activeGrid) => activeGrid === grid.name)
+  );
+  inactiveGrids.forEach((inactiveGrid) => {
+    inactiveGrid.destroy();
+    grids.splice(
+      grids.findIndex((grid) => grid.name === inactiveGrid.name),
+      1
+    );
+  });
+  console.log("activeGrids", activeGrids);
+  if (inactiveGrids.length > 0)
+    console.log(
+      "inactive",
+      inactiveGrids.map((g) => g.name)
+    );
 };
