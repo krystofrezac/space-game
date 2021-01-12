@@ -31,7 +31,7 @@ const updatePositions = (): void => {
 
     const args: UpdatePositions = {
       player: {
-        position: player.body.position,
+        position: player.getPosition(),
         angle: player.body.angle,
       },
     };

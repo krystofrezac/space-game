@@ -16,17 +16,14 @@ const vertices = [
   { x: 45, y: 512 - 263 },
 ];
 
-export const getPlayerBodyCenter = (): matter.Vector => {
-  const center = matter.Vertices.centre(vertices);
-
-  // TODO isn't this redundant?
-  return matter.Vector.create(center.x, center.y);
-};
+export const playerBodyCenter = matter.Vertices.centre(vertices);
 
 export const getPlayerBody = (): matter.Body => {
-  const center = getPlayerBodyCenter();
-
-  const body = matter.Bodies.fromVertices(center.x, center.y, [vertices]);
+  const body = matter.Bodies.fromVertices(
+    playerBodyCenter.x,
+    playerBodyCenter.y,
+    [vertices],
+  );
   body.friction = 0;
   body.frictionAir = 0;
   body.frictionStatic = 0;

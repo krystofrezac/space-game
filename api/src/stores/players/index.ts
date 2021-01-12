@@ -4,6 +4,8 @@ import { Direction } from '@space-game/shared/resolvers/move';
 import { Connection } from '../connection';
 import engine from '../../matter';
 
+import { playerBodyCenter } from './body';
+
 export class Player {
   constructor(initialValues: {
     connection: Connection;
@@ -31,6 +33,14 @@ export class Player {
   public direction: Direction;
 
   public rotation: number;
+
+  public getPosition = (): matter.Vector => {
+    const newPosition = matter.Vector.clone(this.body.position);
+    newPosition.x += (256 - playerBodyCenter.x) * Math.cos(this.body.angle);
+    newPosition.y += (256 - playerBodyCenter.y) * Math.sin(this.body.angle);
+
+    return newPosition;
+  };
 }
 
 const players: Player[] = [];
