@@ -1,4 +1,4 @@
-import matter, { Body } from 'matter-js';
+import matter, { Body, Vector } from 'matter-js';
 
 import { Connection } from '../connection';
 import engine from '../../matter';
@@ -34,7 +34,7 @@ export class Player {
 
   public rotation: number;
 
-  public getPosition = (): matter.Vector => {
+  public getDisplayPosition = (): matter.Vector => {
     const newPosition = matter.Vector.clone(this.body.position);
     newPosition.x += (256 - playerBodyCenter.x) * Math.cos(this.body.angle);
     newPosition.y += (256 - playerBodyCenter.y) * Math.sin(this.body.angle);
@@ -66,6 +66,34 @@ export class Player {
     }
 
     return angularVelocity;
+  };
+
+  public isInArea = (area: {
+    top: number;
+    left: number;
+    width: number;
+    height: number;
+  }): boolean => {
+    return (
+      this.body.position.x >= area.left &&
+      this.body.position.x <= area.left + area.width &&
+      this.body.position.y <= area.top &&
+      this.body.position.y >= area.top - area.height
+    );
+  };
+
+  public getVisibleArea = (): {
+    top: number;
+    left: number;
+    width: number;
+    height: number;
+  } => {
+    return {
+      left: this.body.position.x - config.visibleArea.width / 2,
+      top: this.body.position.y + config.visibleArea.width / 2,
+      width: config.visibleArea.width,
+      height: config.visibleArea.height,
+    };
   };
 }
 

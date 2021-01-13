@@ -104,10 +104,4 @@ export const checkGrids = (phaser: Phaser.Scene): void => {
       1
     );
   });
-  console.log("activeGrids", activeGrids);
-  if (inactiveGrids.length > 0)
-    console.log(
-      "inactive",
-      inactiveGrids.map((g) => g.name)
-    );
 };

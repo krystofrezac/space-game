@@ -4,6 +4,10 @@ const config = {
   maxAngularSpeed: 0.05,
   maxSpeed: 10,
   acceleration: 1,
+  visibleArea: {
+    width: 1600,
+    height: 800,
+  },
 };
 
 export default config;

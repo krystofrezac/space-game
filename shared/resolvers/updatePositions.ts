@@ -7,6 +7,10 @@ export interface UpdatePositions {
     position: matter.Vector;
     angle: number;
   };
+  players: {
+    position: matter.Vector;
+    angle: number;
+  }[];
 }
 
 export default UPDATE_POSITIONS;
