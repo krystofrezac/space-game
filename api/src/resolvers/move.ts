@@ -4,7 +4,6 @@ import { Player } from '../stores/players';
 
 const move = (player: Player) => (payload: Move): void => {
   const { direction } = payload;
-  console.log(direction);
   if (direction >= -1 && direction <= 1) {
     player.direction = direction;
   }
