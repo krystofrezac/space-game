@@ -50,7 +50,13 @@ export class Player {
     velocity = matter.Vector.mult(velocity, config.acceleration);
     velocity = matter.Vector.add(velocity, prevVelocity);
     if (matter.Vector.magnitude(velocity) > config.maxSpeed) {
-      return prevVelocity;
+      const reduction =
+        config.maxSpeed ** 2 / (velocity.x ** 2 + velocity.y ** 2);
+      velocity.x =
+        (velocity.x > 0 ? 1 : -1) * Math.sqrt(velocity.x ** 2 * reduction);
+
+      velocity.y =
+        (velocity.y > 0 ? 1 : -1) * Math.sqrt(velocity.y ** 2 * reduction);
     }
 
     return velocity;

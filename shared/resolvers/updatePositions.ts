@@ -1,16 +1,17 @@
-import matter from 'matter-js';
-
 const UPDATE_POSITIONS = 'updatePositions';
+
+export type UpdatePositionsPlayers = {
+  id: string;
+  position: { x: number; y: number };
+  angle: number;
+}[];
 
 export interface UpdatePositions {
   player: {
-    position: matter.Vector;
+    position: { x: number; y: number };
     angle: number;
   };
-  players: {
-    position: matter.Vector;
-    angle: number;
-  }[];
+  players: UpdatePositionsPlayers;
 }
 
 export default UPDATE_POSITIONS;

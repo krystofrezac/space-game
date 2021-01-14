@@ -26,12 +26,11 @@ const updatePositions = (): void => {
     groupedPlayers.forEach(player => {
       const visiblePlayers = groupedPlayers.filter(visiblePlayer => {
         return (
-          visiblePlayer.isInArea(player.getVisibleArea()) &&
+          // TODO visible area
+          // visiblePlayer.isInArea(player.getVisibleArea()) &&
           visiblePlayer.id !== player.id
         );
       });
-
-      console.log(visiblePlayers.length);
 
       matter.Body.setVelocity(player.body, player.getVelocity());
       matter.Body.setAngularVelocity(player.body, player.getAngularVelocity());
@@ -42,8 +41,9 @@ const updatePositions = (): void => {
           angle: player.body.angle,
         },
         players: visiblePlayers.map(visiblePlayer => ({
+          id: visiblePlayer.id,
           position: visiblePlayer.getDisplayPosition(),
-          angle: player.body.angle,
+          angle: visiblePlayer.body.angle,
         })),
       };
 

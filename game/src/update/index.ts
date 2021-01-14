@@ -1,9 +1,12 @@
 import rotate from "../network/rotate";
 import move from "../network/move";
 import { checkGrids } from "../objects/grid";
+import checkPlayers from "../objects/players";
+import { getUpdatePlayers } from "../stores/updatePlayers";
 
 function update(this: Phaser.Scene, time: number, delta: number): void {
   checkGrids(this);
+  checkPlayers(this, getUpdatePlayers());
 
   const leftKey = this.input.keyboard.addKey(
     Phaser.Input.Keyboard.KeyCodes.LEFT
