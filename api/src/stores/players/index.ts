@@ -1,25 +1,25 @@
-import matter, { Body, Vector } from 'matter-js';
+import matter, { Body } from 'matter-js';
 
 import { Connection } from '../connection';
-import engine from '../../matter';
 import config from '../../config';
 
 import { playerBodyCenter } from './body';
 
 export class Player {
-  constructor(initialValues: {
+  constructor(args: {
     connection: Connection;
     body: Body;
     roomId: string;
+    engine: matter.Engine;
   }) {
-    this.id = initialValues.connection.socket.id;
-    this.connection = initialValues.connection;
-    this.body = initialValues.body;
+    this.id = args.connection.socket.id;
+    this.connection = args.connection;
+    this.body = args.body;
     this.direction = 0;
     this.rotation = 0;
-    this.roomId = initialValues.roomId;
+    this.roomId = args.roomId;
 
-    matter.World.add(engine.world, [this.body]);
+    matter.World.add(args.engine.world, [this.body]);
   }
 
   public id: string;

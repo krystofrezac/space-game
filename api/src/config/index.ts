@@ -5,8 +5,12 @@ const config = {
   maxSpeed: 10,
   acceleration: 0.1,
   visibleArea: {
-    width: 1600,
-    height: 800,
+    width: 3200,
+    height: 1600,
+  },
+  borders: {
+    width: 10000,
+    height: 10000,
   },
 };
 

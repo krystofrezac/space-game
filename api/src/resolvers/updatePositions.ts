@@ -4,11 +4,14 @@ import UPDATE_POSITIONS, {
 import matter from 'matter-js';
 
 import { getPlayers, Player } from '../stores/players';
-import engine from '../matter';
 import config from '../config';
+import { getRooms } from '../stores/room';
 
 const updatePositions = (): void => {
-  matter.Engine.update(engine, config.delta);
+  getRooms().forEach(room => {
+    const roomEngine = room.engine;
+    matter.Engine.update(roomEngine, config.delta);
+  });
 
   const players = getPlayers();
 

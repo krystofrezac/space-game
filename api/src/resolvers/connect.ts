@@ -21,6 +21,7 @@ const connect = (socket: Socket): Player => {
     roomId: selectedRoom.id,
     connection,
     body: getPlayerBody(),
+    engine: selectedRoom.engine,
   });
 
   addPlayer(player);
