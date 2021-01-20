@@ -103,7 +103,7 @@ export class Player {
   };
 }
 
-const players: Player[] = [];
+let players: Player[] = [];
 
 export const getPlayers = (): Player[] => {
   return players;
@@ -111,4 +111,8 @@ export const getPlayers = (): Player[] => {
 
 export const addPlayer = (player: Player): void => {
   players.push(player);
+};
+
+export const deletePlayer = (id: string): void => {
+  players = players.filter(player => player.id !== id);
 };

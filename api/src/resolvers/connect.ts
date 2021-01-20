@@ -15,8 +15,7 @@ const connect = (socket: Socket): Player => {
     const newRoom = new Room({ name: 'test' });
     addRoom(newRoom);
     selectedRoom = newRoom;
-  }
-  [selectedRoom] = rooms;
+  } else [selectedRoom] = rooms;
 
   const player = new Player({
     roomId: selectedRoom.id,
