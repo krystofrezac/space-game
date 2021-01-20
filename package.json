@@ -2,6 +2,9 @@
   "name": "space-game",
   "private": true,
   "version": "1.0.0",
+  "engines": {
+    "node": "12.18.3"
+  },
   "repository": "git@github.com:krystofrezac/space-game.git",
   "author": "Kryštof Řezáč <krystofrezac@gmail.com>",
   "workspaces": [
