@@ -25,7 +25,7 @@ io.on(CONNECT, (socket: Socket) => {
 
   socket.on(MOVE, move(player));
   socket.on(ROTATE, rotate(player));
-  socket.on(SHOOT, shoot);
+  socket.on(SHOOT, shoot(player));
 });
 
 setInterval(() => {

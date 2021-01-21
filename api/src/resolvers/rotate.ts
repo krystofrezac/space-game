@@ -1,5 +1,4 @@
 import { Rotate } from '@space-game/shared/resolvers/rotate';
-import matter from 'matter-js';
 
 import { Player } from '../stores/players';
 
