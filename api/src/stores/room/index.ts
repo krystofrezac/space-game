@@ -74,3 +74,21 @@ export const getRooms = (): Room[] => {
 export const addRoom = (room: Room): void => {
   rooms.push(room);
 };
+
+export const addBulletToRoom = (args: {
+  roomId: string;
+  position: matter.Vector;
+  velocity: matter.Vector;
+}) => {
+  const room = rooms.find(room => room.id === args.roomId);
+  if (!room) return;
+  const bullet = matter.Bodies.circle(
+    args.position.x,
+    args.position.y,
+    config.objects.bullet.radius,
+    {
+      mass: config.objects.bullet.mass,
+    },
+  );
+  matter.World.add(room.engine.world, bullet);
+};

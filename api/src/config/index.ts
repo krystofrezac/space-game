@@ -12,6 +12,15 @@ const config = {
     width: 10000,
     height: 10000,
   },
+  objects: {
+    bullet: {
+      mass: 10000,
+      radius: 10,
+    },
+    player: {
+      mass: 1,
+    },
+  },
 };
 
 export default config;

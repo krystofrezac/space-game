@@ -27,6 +27,8 @@ const updatePositions = (): void => {
 
   playersByRoom.forEach(groupedPlayers => {
     groupedPlayers.forEach(player => {
+      player.shoot();
+
       const visiblePlayers = groupedPlayers.filter(visiblePlayer => {
         return (
           // TODO visible area

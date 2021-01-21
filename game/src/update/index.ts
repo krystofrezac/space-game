@@ -3,7 +3,9 @@ import move from "../network/move";
 import { checkGrids } from "../objects/grid";
 import checkPlayers from "../objects/players";
 import { getUpdatePlayers } from "../stores/updatePlayers";
+import shoot from "../network/shoot";
 
+let spaceDown = false;
 function update(this: Phaser.Scene, time: number, delta: number): void {
   checkGrids(this);
   checkPlayers(this, getUpdatePlayers());
@@ -17,6 +19,9 @@ function update(this: Phaser.Scene, time: number, delta: number): void {
   const upKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
   const downKey = this.input.keyboard.addKey(
     Phaser.Input.Keyboard.KeyCodes.DOWN
+  );
+  const spaceKey = this.input.keyboard.addKey(
+    Phaser.Input.Keyboard.KeyCodes.SPACE
   );
 
   let pressedMoveKeys = 0;
@@ -48,6 +53,15 @@ function update(this: Phaser.Scene, time: number, delta: number): void {
   });
   leftKey.on("up", () => {
     rotate(0);
+  });
+
+  spaceKey.on("down", () => {
+    if (!spaceDown) shoot(1);
+    spaceDown = true;
+  });
+  spaceKey.on("up", () => {
+    console.log("u");
+    spaceDown = false;
   });
 }
 

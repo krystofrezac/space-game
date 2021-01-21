@@ -1,5 +1,7 @@
 import matter from 'matter-js';
 
+import config from '../../config';
+
 const vertices = [
   { x: 26, y: 512 - 176 },
   { x: 190, y: 512 - 184 },
@@ -28,6 +30,7 @@ export const getPlayerBody = (): matter.Body => {
   body.friction = 0;
   body.frictionAir = 0;
   body.frictionStatic = 0;
+  body.mass = config.objects.player.mass;
 
   return body;
 };

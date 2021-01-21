@@ -1,7 +1,9 @@
 import matter, { Body } from 'matter-js';
+import { nanoid } from 'nanoid';
 
 import { Connection } from '../connection';
 import config from '../../config';
+import { addBulletToRoom } from '../room';
 
 import { playerBodyCenter } from './body';
 
@@ -12,11 +14,12 @@ export class Player {
     roomId: string;
     engine: matter.Engine;
   }) {
-    this.id = args.connection.socket.id;
+    this.id = nanoid();
     this.connection = args.connection;
     this.body = args.body;
     this.direction = 0;
     this.rotation = 0;
+    this.shootRate = 0;
     this.roomId = args.roomId;
 
     matter.World.add(args.engine.world, [this.body]);
@@ -33,6 +36,8 @@ export class Player {
   public direction: number;
 
   public rotation: number;
+
+  public shootRate: number;
 
   public getDisplayPosition = (): matter.Vector => {
     const newPosition = matter.Vector.clone(this.body.position);
@@ -100,6 +105,18 @@ export class Player {
       width: config.visibleArea.width,
       height: config.visibleArea.height,
     };
+  };
+
+  public shoot = (): void => {
+    if (this.shootRate !== 0) {
+      console.log('shoot');
+      addBulletToRoom({
+        roomId: this.roomId,
+        position: this.body.position,
+        velocity: this.body.velocity,
+      });
+      this.shootRate = 0;
+    }
   };
 }
 

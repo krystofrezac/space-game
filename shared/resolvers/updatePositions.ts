@@ -12,6 +12,10 @@ export interface UpdatePositions {
     angle: number;
   };
   players: UpdatePositionsPlayers;
+  bullets: {
+    position: { x: number; y: number };
+    angle: number;
+  }[];
 }
 
 export default UPDATE_POSITIONS;
