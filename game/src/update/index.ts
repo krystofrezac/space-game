@@ -4,11 +4,14 @@ import { checkGrids } from "../objects/grid";
 import checkPlayers from "../objects/players";
 import { getUpdatePlayers } from "../stores/updatePlayers";
 import shoot from "../network/shoot";
+import checkBullets from "../objects/bullets";
+import { getUpdateBullets } from "../stores/updateBullets";
 
 let spaceDown = false;
 function update(this: Phaser.Scene, time: number, delta: number): void {
   checkGrids(this);
   checkPlayers(this, getUpdatePlayers());
+  checkBullets(this, getUpdateBullets());
 
   const leftKey = this.input.keyboard.addKey(
     Phaser.Input.Keyboard.KeyCodes.LEFT
@@ -60,7 +63,6 @@ function update(this: Phaser.Scene, time: number, delta: number): void {
     spaceDown = true;
   });
   spaceKey.on("up", () => {
-    console.log("u");
     spaceDown = false;
   });
 }

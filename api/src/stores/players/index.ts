@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 
 import { Connection } from '../connection';
 import config from '../../config';
-import { addBulletToRoom } from '../room';
+import { addBullet, Bullet } from '../bullets';
 
 import { playerBodyCenter } from './body';
 
@@ -109,12 +109,20 @@ export class Player {
 
   public shoot = (): void => {
     if (this.shootRate !== 0) {
-      console.log('shoot');
-      addBulletToRoom({
+      const position = matter.Vector.add(
+        this.body.position,
+        matter.Vector.rotate(
+          matter.Vector.create(0, -config.objects.bullet.createGap),
+          this.body.angle,
+        ),
+      );
+      const bullet = new Bullet({
         roomId: this.roomId,
-        position: this.body.position,
-        velocity: this.body.velocity,
+        x: position.x,
+        y: position.y,
+        angle: this.body.angle,
       });
+      addBullet(bullet);
       this.shootRate = 0;
     }
   };

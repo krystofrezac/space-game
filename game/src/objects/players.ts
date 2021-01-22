@@ -7,8 +7,6 @@ const checkPlayers = (
   phaser: Phaser.Scene,
   updatePlayers: UpdatePositionsPlayers
 ): void => {
-  console.log("players", players.length, updatePlayers.length);
-
   const inactivePlayers = players.filter(
     (player) =>
       !updatePlayers.some((updatePlayer) => updatePlayer.id === player.id)
@@ -24,7 +22,14 @@ const checkPlayers = (
   );
 
   newPlayers.forEach((newPlayer) => {
-    players.push({ id: newPlayer.id, image: phaser.add.image(0, 0, "enemy") });
+    players.push({
+      id: newPlayer.id,
+      image: phaser.add.image(
+        newPlayer.position.x,
+        newPlayer.position.y,
+        "enemy"
+      ),
+    });
   });
   players.forEach((player) => {
     const updatePlayer = updatePlayers.find(

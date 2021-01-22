@@ -15,7 +15,9 @@ const config = {
   objects: {
     bullet: {
       mass: 10000,
-      radius: 10,
+      radius: 32,
+      speed: 10,
+      createGap: 250,
     },
     player: {
       mass: 1,

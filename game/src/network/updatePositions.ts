@@ -3,6 +3,7 @@ import Phaser from "phaser";
 
 import { getPlayer, setPlayer } from "../stores/player";
 import { setUpdatePlayers } from "../stores/updatePlayers";
+import { setUpdateBullets } from "../stores/updateBullets";
 
 const updatePositions = (args: UpdatePositions): void => {
   const player = getPlayer();
@@ -13,6 +14,7 @@ const updatePositions = (args: UpdatePositions): void => {
   }
 
   setUpdatePlayers(args.players);
+  setUpdateBullets(args.bullets);
 };
 
 export default updatePositions;

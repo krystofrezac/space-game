@@ -6,6 +6,7 @@ import matter from 'matter-js';
 import { getPlayers, Player } from '../stores/players';
 import config from '../config';
 import { getRooms } from '../stores/room';
+import { Bullet, getBullets } from '../stores/bullets';
 
 const updatePositions = (): void => {
   getRooms().forEach(room => {
@@ -25,10 +26,23 @@ const updatePositions = (): void => {
     }
   });
 
+  const bullets = getBullets();
+
+  const bulletsByRoom = new Map<string, Bullet[]>();
+  bullets.forEach(bullet => {
+    const room = bulletsByRoom.get(bullet.roomId);
+    if (!room) {
+      bulletsByRoom.set(bullet.roomId, [bullet]);
+    } else {
+      bulletsByRoom.set(bullet.roomId, [...room, bullet]);
+    }
+  });
+
   playersByRoom.forEach(groupedPlayers => {
+    const roomBullets = bulletsByRoom.get(groupedPlayers[0].roomId) || [];
+
     groupedPlayers.forEach(player => {
       player.shoot();
-
       const visiblePlayers = groupedPlayers.filter(visiblePlayer => {
         return (
           // TODO visible area
@@ -49,6 +63,12 @@ const updatePositions = (): void => {
           id: visiblePlayer.id,
           position: visiblePlayer.getDisplayPosition(),
           angle: visiblePlayer.body.angle,
+        })),
+        // TODO angle
+        bullets: roomBullets.map(bullet => ({
+          id: bullet.id,
+          position: bullet.body.position,
+          angle: bullet.body.angle,
         })),
       };
 
