@@ -64,7 +64,6 @@ const updatePositions = (): void => {
           position: visiblePlayer.getDisplayPosition(),
           angle: visiblePlayer.body.angle,
         })),
-        // TODO angle
         bullets: roomBullets.map(bullet => ({
           id: bullet.id,
           position: bullet.body.position,

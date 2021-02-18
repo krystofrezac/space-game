@@ -3,6 +3,7 @@ import { Socket } from 'socket.io';
 import SHOOT from '@space-game/shared/resolvers/shoot';
 import ROTATE from '@space-game/shared/resolvers/rotate';
 import MOVE from '@space-game/shared/resolvers/move';
+import matter from 'matter-js';
 
 import io, { server } from './server';
 import { deleteConnection } from './stores/connection';

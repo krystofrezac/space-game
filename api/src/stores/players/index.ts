@@ -5,24 +5,28 @@ import { Connection } from '../connection';
 import config from '../../config';
 import { addBullet, Bullet } from '../bullets';
 
-import { playerBodyCenter } from './body';
+import { getPlayerBody, playerBodyCenter } from './body';
 
 export class Player {
   constructor(args: {
     connection: Connection;
-    body: Body;
     roomId: string;
     engine: matter.Engine;
   }) {
     this.id = nanoid();
     this.connection = args.connection;
-    this.body = args.body;
+
     this.direction = 0;
     this.rotation = 0;
     this.shootRate = 0;
     this.roomId = args.roomId;
+    this.lives = 100;
 
-    matter.World.add(args.engine.world, [this.body]);
+    const player = getPlayerBody(`PLAYER-${this.id}`);
+
+    matter.World.add(args.engine.world, player);
+
+    this.body = player;
   }
 
   public id: string;
@@ -38,6 +42,8 @@ export class Player {
   public rotation: number;
 
   public shootRate: number;
+
+  public lives: number;
 
   public getDisplayPosition = (): matter.Vector => {
     const newPosition = matter.Vector.clone(this.body.position);
@@ -126,12 +132,20 @@ export class Player {
       this.shootRate = 0;
     }
   };
+
+  public hit = (): void => {
+    this.lives -= config.objects.bullet.damage;
+  };
 }
 
 let players: Player[] = [];
 
 export const getPlayers = (): Player[] => {
   return players;
+};
+
+export const getPlayer = (id: string): Player | undefined => {
+  return players.find(p => p.id === id);
 };
 
 export const addPlayer = (player: Player): void => {

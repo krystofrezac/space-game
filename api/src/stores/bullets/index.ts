@@ -2,7 +2,19 @@ import matter from 'matter-js';
 import { nanoid } from 'nanoid';
 
 import config from '../../config';
-import { getRoom } from '../room';
+import { getRoom, Room } from '../room';
+
+let bullets: Bullet[] = [];
+
+export const getBullets = (): Bullet[] => bullets;
+
+export const addBullet = (bullet: Bullet): void => {
+  bullets.push(bullet);
+};
+
+export const deleteBullet = (id: string): void => {
+  bullets = bullets.filter(bullet => bullet.id !== id);
+};
 
 export class Bullet {
   constructor(args: { x: number; y: number; angle: number; roomId: string }) {
@@ -21,6 +33,7 @@ export class Bullet {
     bullet.friction = 0;
     bullet.frictionAir = 0;
     bullet.frictionStatic = 0;
+    bullet.label = `BULLET-${this.id}`;
 
     let velocity = matter.Vector.create(0, -config.objects.bullet.speed);
     velocity = matter.Vector.rotate(velocity, args.angle);
@@ -29,6 +42,10 @@ export class Bullet {
     const room = getRoom(args.roomId);
     if (room) {
       matter.World.add(room.engine.world, bullet);
+
+      setTimeout(() => {
+        this.delete(room);
+      }, config.objects.bullet.ttl);
     }
     this.body = bullet;
   }
@@ -38,16 +55,9 @@ export class Bullet {
   public roomId: string;
 
   public body: matter.Body;
+
+  private delete = (room: Room): void => {
+    deleteBullet(this.id);
+    matter.World.remove(room.engine.world, this.body);
+  };
 }
-
-let bullets: Bullet[] = [];
-
-export const getBullets = (): Bullet[] => bullets;
-
-export const addBullet = (bullet: Bullet): void => {
-  bullets.push(bullet);
-};
-
-export const deleteBullet = (id: string): void => {
-  bullets = bullets.filter(bullet => bullet.id !== id);
-};

@@ -3,7 +3,6 @@ import { Socket } from 'socket.io';
 import { addConnection, Connection } from '../stores/connection';
 import { addRoom, getRooms, Room } from '../stores/room';
 import { addPlayer, Player } from '../stores/players';
-import { getPlayerBody } from '../stores/players/body';
 
 const connect = (socket: Socket): Player => {
   const connection = new Connection(socket);
@@ -20,7 +19,6 @@ const connect = (socket: Socket): Player => {
   const player = new Player({
     roomId: selectedRoom.id,
     connection,
-    body: getPlayerBody(),
     engine: selectedRoom.engine,
   });
 

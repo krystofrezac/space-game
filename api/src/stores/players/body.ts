@@ -20,11 +20,12 @@ const vertices = [
 
 export const playerBodyCenter = matter.Vertices.centre(vertices);
 
-export const getPlayerBody = (): matter.Body => {
+export const getPlayerBody = (label: string): matter.Body => {
   const body = matter.Bodies.fromVertices(
     playerBodyCenter.x,
     playerBodyCenter.y,
     [vertices],
+    { label },
   );
 
   body.friction = 0;

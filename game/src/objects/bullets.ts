@@ -1,12 +1,21 @@
 import Phaser from "phaser";
 import { UpdatePositionsBullets } from "@space-game/shared/resolvers/updatePositions";
 
-const bullets: { id: string; image: Phaser.GameObjects.Image }[] = [];
+let bullets: { id: string; image: Phaser.GameObjects.Image }[] = [];
 
 const checkBullets = (
   phaser: Phaser.Scene,
   updateBullets: UpdatePositionsBullets
 ): void => {
+  const inactiveBullets = bullets.filter(
+    (bullet) =>
+      !updateBullets.some((updateBullet) => updateBullet.id === bullet.id)
+  );
+  inactiveBullets.forEach((inactiveBullet) => {
+    inactiveBullet.image.destroy();
+    bullets = bullets.filter((b) => b.id !== inactiveBullet.id);
+  });
+
   const newBullets = updateBullets.filter(
     (updateBullet) => !bullets.some((bullet) => updateBullet.id === bullet.id)
   );

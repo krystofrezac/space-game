@@ -16,8 +16,10 @@ const config = {
     bullet: {
       mass: 10000,
       radius: 32,
-      speed: 10,
+      speed: 15,
       createGap: 250,
+      ttl: 1000 * 10,
+      damage: 10,
     },
     player: {
       mass: 1,
