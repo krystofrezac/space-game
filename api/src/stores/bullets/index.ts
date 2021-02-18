@@ -8,6 +8,8 @@ import customNanoid from '../../customNanoid';
 let bullets: Bullet[] = [];
 
 export const getBullets = (): Bullet[] => bullets;
+export const getBullet = (id: string): Bullet | undefined =>
+  bullets.find(b => b.id === id);
 
 export const addBullet = (bullet: Bullet): void => {
   bullets.push(bullet);

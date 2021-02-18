@@ -22,6 +22,7 @@ export class Player {
     this.shootRate = 0;
     this.roomId = args.roomId;
     this.lives = 100;
+    this.hitByBullets = [];
 
     const player = getPlayerBody(`PLAYER-${this.id}`);
 
@@ -45,6 +46,8 @@ export class Player {
   public shootRate: number;
 
   public lives: number;
+
+  public hitByBullets: string[];
 
   public getDisplayPosition = (): matter.Vector => {
     const newPosition = matter.Vector.clone(this.body.position);
@@ -134,8 +137,11 @@ export class Player {
     }
   };
 
-  public hit = (): void => {
-    this.lives -= config.objects.bullet.damage;
+  public hit = (bulletId: string): void => {
+    if (!this.hitByBullets.some(b => b === bulletId)) {
+      this.lives -= config.objects.bullet.damage;
+      this.hitByBullets.push(bulletId);
+    }
   };
 }
 
