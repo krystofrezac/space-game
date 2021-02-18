@@ -7,9 +7,10 @@ import { setUpdateBullets } from "../stores/updateBullets";
 
 const updatePositions = (args: UpdatePositions): void => {
   const player = getPlayer();
-  if (player) {
-    player.setPosition(args.player.position.x, args.player.position.y);
-    player.setAngle(Phaser.Math.RadToDeg(args.player.angle));
+  if (player?.body) {
+    player.body.setPosition(args.player.position.x, args.player.position.y);
+    player.body.setAngle(Phaser.Math.RadToDeg(args.player.angle));
+    player.text.setText(`${args.player.lives}`);
     setPlayer(player);
   }
 

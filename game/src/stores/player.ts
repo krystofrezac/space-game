@@ -1,11 +1,16 @@
 import Phaser from "phaser";
 
-let player: Phaser.GameObjects.Image | undefined;
+interface Player {
+  body: Phaser.GameObjects.Image;
+  text: Phaser.GameObjects.Text;
+}
 
-export const setPlayer = (newPlayer: Phaser.GameObjects.Image): void => {
+let player: Player | undefined;
+
+export const setPlayer = (newPlayer: Player): void => {
   player = newPlayer;
 };
 
-export const getPlayer = (): Phaser.GameObjects.Image | undefined => {
+export const getPlayer = (): Player | undefined => {
   return player;
 };

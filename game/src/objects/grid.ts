@@ -38,26 +38,26 @@ export const checkGrids = (phaser: Phaser.Scene): void => {
   const activeGrids: string[] = [];
 
   const checkPoints = [
-    new Phaser.Math.Vector2(player.x, player.y),
-    new Phaser.Math.Vector2(player.x - config.grid.width, player.y),
+    new Phaser.Math.Vector2(player.body.x, player.body.y),
+    new Phaser.Math.Vector2(player.body.x - config.grid.width, player.body.y),
     new Phaser.Math.Vector2(
-      player.x - config.grid.width,
-      player.y + config.grid.height
+      player.body.x - config.grid.width,
+      player.body.y + config.grid.height
     ),
-    new Phaser.Math.Vector2(player.x, player.y + config.grid.height),
+    new Phaser.Math.Vector2(player.body.x, player.body.y + config.grid.height),
     new Phaser.Math.Vector2(
-      player.x + config.grid.width,
-      player.y + config.grid.height
+      player.body.x + config.grid.width,
+      player.body.y + config.grid.height
     ),
-    new Phaser.Math.Vector2(player.x + config.grid.width, player.y),
+    new Phaser.Math.Vector2(player.body.x + config.grid.width, player.body.y),
     new Phaser.Math.Vector2(
-      player.x + config.grid.width,
-      player.y - config.grid.height
+      player.body.x + config.grid.width,
+      player.body.y - config.grid.height
     ),
-    new Phaser.Math.Vector2(player.x, player.y - config.grid.height),
+    new Phaser.Math.Vector2(player.body.x, player.body.y - config.grid.height),
     new Phaser.Math.Vector2(
-      player.x - config.grid.width,
-      player.y - config.grid.height
+      player.body.x - config.grid.width,
+      player.body.y - config.grid.height
     ),
   ];
 

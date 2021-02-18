@@ -6,12 +6,19 @@ import { getUpdatePlayers } from "../stores/updatePlayers";
 import shoot from "../network/shoot";
 import checkBullets from "../objects/bullets";
 import { getUpdateBullets } from "../stores/updateBullets";
+import { getPlayer } from "../stores/player";
 
 let spaceDown = false;
 function update(this: Phaser.Scene, time: number, delta: number): void {
   checkGrids(this);
   checkPlayers(this, getUpdatePlayers());
   checkBullets(this, getUpdateBullets());
+
+  const player = getPlayer();
+  if (player) {
+    player.text.x = player.body.x - 50;
+    player.text.y = player.body.y + 240;
+  }
 
   const leftKey = this.input.keyboard.addKey(
     Phaser.Input.Keyboard.KeyCodes.LEFT
