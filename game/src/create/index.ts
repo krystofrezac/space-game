@@ -1,5 +1,4 @@
 import { setPlayer } from "../stores/player";
-import config from "../config";
 
 function create(this: Phaser.Scene): void {
   const player = this.add.image(0, 0, "player");

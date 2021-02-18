@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 
 import config from '../../config';
 import { getRoom, Room } from '../room';
+import customNanoid from '../../customNanoid';
 
 let bullets: Bullet[] = [];
 
@@ -18,7 +19,7 @@ export const deleteBullet = (id: string): void => {
 
 export class Bullet {
   constructor(args: { x: number; y: number; angle: number; roomId: string }) {
-    this.id = nanoid();
+    this.id = customNanoid();
     this.roomId = args.roomId;
     const bullet = matter.Bodies.circle(
       args.x,

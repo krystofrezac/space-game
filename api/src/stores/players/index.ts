@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import { Connection } from '../connection';
 import config from '../../config';
 import { addBullet, Bullet } from '../bullets';
+import customNanoid from '../../customNanoid';
 
 import { getPlayerBody, playerBodyCenter } from './body';
 
@@ -13,7 +14,7 @@ export class Player {
     roomId: string;
     engine: matter.Engine;
   }) {
-    this.id = nanoid();
+    this.id = customNanoid();
     this.connection = args.connection;
 
     this.direction = 0;

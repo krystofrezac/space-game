@@ -4,10 +4,11 @@ import matter from 'matter-js';
 import { getPlayer, Player } from 'stores/players';
 
 import config from '../../config';
+import customNanoid from '../../customNanoid';
 
 export class Room {
   constructor(options: { name: string }) {
-    this.id = nanoid();
+    this.id = customNanoid();
     this.connected = 0;
     this.name = options.name;
 
