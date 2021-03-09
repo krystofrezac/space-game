@@ -1,7 +1,7 @@
 const SHOOT = 'shoot';
 
 export interface Shoot {
-  shootRate: number;
+  shoot: boolean;
 }
 
 export default SHOOT;

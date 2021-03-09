@@ -19,10 +19,11 @@ export class Player {
 
     this.direction = 0;
     this.rotation = 0;
-    this.shootRate = 0;
+    this.readyToShoot = false;
     this.roomId = args.roomId;
     this.lives = 100;
     this.hitByBullets = [];
+    this.bullets = config.maxBullets;
 
     const player = getPlayerBody(`PLAYER-${this.id}`);
 
@@ -43,11 +44,13 @@ export class Player {
 
   public rotation: number;
 
-  public shootRate: number;
+  public readyToShoot: boolean;
 
   public lives: number;
 
   public hitByBullets: string[];
+
+  public bullets: number;
 
   public getDisplayPosition = (): matter.Vector => {
     const newPosition = matter.Vector.clone(this.body.position);
@@ -118,7 +121,12 @@ export class Player {
   };
 
   public shoot = (): void => {
-    if (this.shootRate !== 0) {
+    if (this.readyToShoot && this.bullets !== 0) {
+      this.bullets--;
+      setTimeout(() => {
+        this.bullets++;
+      }, config.bulletReload);
+
       const position = matter.Vector.add(
         this.body.position,
         matter.Vector.rotate(
@@ -133,7 +141,7 @@ export class Player {
         angle: this.body.angle,
       });
       addBullet(bullet);
-      this.shootRate = 0;
+      this.readyToShoot = false;
     }
   };
 

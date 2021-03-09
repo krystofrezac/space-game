@@ -2,7 +2,8 @@ import Phaser from "phaser";
 
 interface Player {
   body: Phaser.GameObjects.Image;
-  text: Phaser.GameObjects.Text;
+  lives: Phaser.GameObjects.Text;
+  bullets: Phaser.GameObjects.Text;
 }
 
 let player: Player | undefined;

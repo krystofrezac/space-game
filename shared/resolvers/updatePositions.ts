@@ -18,6 +18,7 @@ export interface UpdatePositions {
     position: { x: number; y: number };
     angle: number;
     lives: number;
+    bullets: number;
   };
   players: UpdatePositionsPlayers;
   bullets: UpdatePositionsBullets;

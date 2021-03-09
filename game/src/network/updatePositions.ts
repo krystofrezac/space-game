@@ -10,7 +10,8 @@ const updatePositions = (args: UpdatePositions): void => {
   if (player?.body) {
     player.body.setPosition(args.player.position.x, args.player.position.y);
     player.body.setAngle(Phaser.Math.RadToDeg(args.player.angle));
-    player.text.setText(`${args.player.lives}`);
+    player.lives.setText(`${args.player.lives}`);
+    player.bullets.setText(`Bullets: ${args.player.bullets}`);
     setPlayer(player);
   }
 

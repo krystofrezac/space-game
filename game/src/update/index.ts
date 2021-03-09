@@ -1,3 +1,5 @@
+import Phaser from "phaser";
+
 import rotate from "../network/rotate";
 import move from "../network/move";
 import { checkGrids } from "../objects/grid";
@@ -16,8 +18,8 @@ function update(this: Phaser.Scene, time: number, delta: number): void {
 
   const player = getPlayer();
   if (player) {
-    player.text.x = player.body.x - 50;
-    player.text.y = player.body.y + 240;
+    player.lives.x = player.body.x - 50;
+    player.lives.y = player.body.y + 240;
   }
 
   const leftKey = this.input.keyboard.addKey(
@@ -66,7 +68,7 @@ function update(this: Phaser.Scene, time: number, delta: number): void {
   });
 
   spaceKey.on("down", () => {
-    if (!spaceDown) shoot(1);
+    if (!spaceDown) shoot();
     spaceDown = true;
   });
   spaceKey.on("up", () => {
