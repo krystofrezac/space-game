@@ -1,20 +1,20 @@
 import Phaser from "phaser";
 
-import rotate from "../network/rotate";
-import move from "../network/move";
-import { checkGrids } from "../objects/grid";
-import checkPlayers from "../objects/players";
-import { getUpdatePlayers } from "../stores/updatePlayers";
-import shoot from "../network/shoot";
-import checkBullets from "../objects/bullets";
-import { getUpdateBullets } from "../stores/updateBullets";
-import { getPlayer } from "../stores/player";
+import rotate from "../../../network/rotate";
+import move from "../../../network/move";
+import { checkGrids } from "../../../objects/grid";
+import checkPlayers from "../../../objects/players";
+import { getUpdatePlayers } from "../../../stores/updatePlayers";
+import shoot from "../../../network/shoot";
+import checkBullets from "../../../objects/bullets";
+import { getUpdateBullets } from "../../../stores/updateBullets";
+import { getPlayer } from "../../../stores/player";
 
 let spaceDown = false;
-function update(this: Phaser.Scene, time: number, delta: number): void {
-  checkGrids(this);
-  checkPlayers(this, getUpdatePlayers());
-  checkBullets(this, getUpdateBullets());
+function update(phaser: Phaser.Scene): void {
+  checkGrids(phaser);
+  checkPlayers(phaser, getUpdatePlayers());
+  checkBullets(phaser, getUpdateBullets());
 
   const player = getPlayer();
   if (player) {
@@ -22,17 +22,17 @@ function update(this: Phaser.Scene, time: number, delta: number): void {
     player.lives.y = player.body.y + 240;
   }
 
-  const leftKey = this.input.keyboard.addKey(
+  const leftKey = phaser.input.keyboard.addKey(
     Phaser.Input.Keyboard.KeyCodes.LEFT
   );
-  const rightKey = this.input.keyboard.addKey(
+  const rightKey = phaser.input.keyboard.addKey(
     Phaser.Input.Keyboard.KeyCodes.RIGHT
   );
-  const upKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
-  const downKey = this.input.keyboard.addKey(
+  const upKey = phaser.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+  const downKey = phaser.input.keyboard.addKey(
     Phaser.Input.Keyboard.KeyCodes.DOWN
   );
-  const spaceKey = this.input.keyboard.addKey(
+  const spaceKey = phaser.input.keyboard.addKey(
     Phaser.Input.Keyboard.KeyCodes.SPACE
   );
 

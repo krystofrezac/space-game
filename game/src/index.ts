@@ -1,9 +1,9 @@
 import Phaser from "phaser";
 
 import config from "./config";
-import preload from "./preload";
-import create from "./create";
-import update from "./update";
+import startNetworkCommunication from "./network";
+import GameScene from "./scenes/game";
+import MenuScene from "./scenes/menu";
 
 const phaserConfig: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -13,11 +13,10 @@ const phaserConfig: Phaser.Types.Core.GameConfig = {
     width: config.window.width,
     height: config.window.height,
   },
-  scene: {
-    preload,
-    create,
-    update,
-  },
+  scene: [MenuScene, GameScene],
 };
 
-const game = new Phaser.Game(phaserConfig);
+// eslint-disable-next-line no-new
+new Phaser.Game(phaserConfig);
+
+startNetworkCommunication();
