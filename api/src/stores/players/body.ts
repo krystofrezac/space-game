@@ -32,8 +32,8 @@ export const getPlayerBody = (label: string): matter.Body => {
   body.frictionAir = 0;
   body.frictionStatic = 0;
   body.mass = config.objects.player.mass;
-  body.collisionFilter.category = 0x10;
-  body.collisionFilter.mask = 0x11;
+  body.collisionFilter.category = 0x010;
+  body.collisionFilter.mask = 0x111;
 
   return body;
 };

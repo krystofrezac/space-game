@@ -37,8 +37,8 @@ export class Bullet {
     bullet.frictionAir = 0;
     bullet.frictionStatic = 0;
     bullet.label = `BULLET-${this.id}`;
-    bullet.collisionFilter.category = 0x01;
-    bullet.collisionFilter.mask = 0x11;
+    bullet.collisionFilter.category = 0x001;
+    bullet.collisionFilter.mask = 0x011;
 
     let velocity = matter.Vector.create(0, -config.objects.bullet.speed);
     velocity = matter.Vector.rotate(velocity, args.angle);

@@ -24,6 +24,10 @@ export class Room {
         10,
         {
           isStatic: true,
+          collisionFilter: {
+            category: 0x100,
+            mask: 0x010,
+          },
         },
       ), // bottom
       matter.Bodies.rectangle(
@@ -33,6 +37,10 @@ export class Room {
         10,
         {
           isStatic: true,
+          collisionFilter: {
+            category: 0x100,
+            mask: 0x010,
+          },
         },
       ),
       // left
@@ -43,6 +51,10 @@ export class Room {
         config.borders.height,
         {
           isStatic: true,
+          collisionFilter: {
+            category: 0x100,
+            mask: 0x010,
+          },
         },
       ),
       // right
@@ -53,6 +65,10 @@ export class Room {
         config.borders.height,
         {
           isStatic: true,
+          collisionFilter: {
+            category: 0x100,
+            mask: 0x010,
+          },
         },
       ),
     ]);

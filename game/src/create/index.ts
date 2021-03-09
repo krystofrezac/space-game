@@ -1,5 +1,6 @@
 import { setPlayer } from "../stores/player";
 import config from "../config";
+import startNetworkCommunication from "../network";
 
 function create(this: Phaser.Scene): void {
   const player = this.add.image(0, 0, "player");
@@ -25,6 +26,8 @@ function create(this: Phaser.Scene): void {
   bullets.scrollFactorY = 0;
 
   setPlayer({ body: player, lives, bullets });
+
+  startNetworkCommunication();
 }
 
 export default create;
