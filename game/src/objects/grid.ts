@@ -21,7 +21,7 @@ export const createGrid = (
       100,
       0x000000
     )
-    .setOutlineStyle(0x0f0f0f)
+    .setOutlineStyle(0x2f2f2f)
     .setDepth(config.depths.grid);
 
   grid.name = `grid-${gridIndex}`;
