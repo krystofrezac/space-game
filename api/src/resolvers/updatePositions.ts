@@ -18,11 +18,11 @@ const updatePositions = (): void => {
 
   const playersByRoom = new Map<string, Player[]>();
   players.forEach(player => {
-    const room = playersByRoom.get(player.roomId);
-    if (!room) {
-      playersByRoom.set(player.roomId, [player]);
-    } else {
-      playersByRoom.set(player.roomId, [...room, player]);
+    if (player.roomId) {
+      const room = playersByRoom.get(player.roomId);
+      if (!room) {
+        playersByRoom.set(player.roomId, [player]);
+      } else playersByRoom.set(player.roomId, [...room, player]);
     }
   });
 
@@ -39,7 +39,7 @@ const updatePositions = (): void => {
   });
 
   playersByRoom.forEach(groupedPlayers => {
-    const roomBullets = bulletsByRoom.get(groupedPlayers[0].roomId) || [];
+    const roomBullets = bulletsByRoom.get(`${groupedPlayers[0]?.roomId}`) || [];
 
     groupedPlayers.forEach(player => {
       player.shoot();
@@ -74,7 +74,7 @@ const updatePositions = (): void => {
         })),
       };
 
-      player.connection.socket.emit(UPDATE_POSITIONS, args);
+      player.getConnection()?.socket.emit(UPDATE_POSITIONS, args);
     });
   });
 };

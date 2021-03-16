@@ -1,42 +1,35 @@
 import matter, { Body } from 'matter-js';
-import { nanoid } from 'nanoid';
 
-import { Connection } from '../connection';
+import { Connection, getConnection } from '../connection';
 import config from '../../config';
 import { addBullet, Bullet } from '../bullets';
 import customNanoid from '../../customNanoid';
+import { getRoom } from '../room';
 
 import { getPlayerBody, playerBodyCenter } from './body';
 
 export class Player {
-  constructor(args: {
-    connection: Connection;
-    roomId: string;
-    engine: matter.Engine;
-  }) {
+  constructor(args: { connectionId: string }) {
     this.id = customNanoid();
-    this.connection = args.connection;
+    this.connectionId = args.connectionId;
 
     this.direction = 0;
     this.rotation = 0;
     this.readyToShoot = false;
-    this.roomId = args.roomId;
     this.lives = 100;
     this.hitByBullets = [];
     this.bullets = config.maxBullets;
 
-    const player = getPlayerBody(`PLAYER-${this.id}`);
-
-    matter.World.add(args.engine.world, player);
-
-    this.body = player;
+    this.body = getPlayerBody(`PLAYER-${this.id}`);
   }
 
   public id: string;
 
-  public connection: Connection;
+  public name?: string;
 
-  public roomId: string;
+  public connectionId: string;
+
+  public roomId?: string;
 
   public body: Body;
 
@@ -51,6 +44,18 @@ export class Player {
   public hitByBullets: string[];
 
   public bullets: number;
+
+  public getConnection = (): Connection | undefined => {
+    return getConnection(this.connectionId);
+  };
+
+  public addToRoom = (roomId: string): void => {
+    const room = getRoom(roomId);
+    if (room) {
+      matter.World.add(room.engine.world, this.body);
+      this.roomId = roomId;
+    }
+  };
 
   public getDisplayPosition = (): matter.Vector => {
     const newPosition = matter.Vector.clone(this.body.position);
@@ -121,7 +126,7 @@ export class Player {
   };
 
   public shoot = (): void => {
-    if (this.readyToShoot && this.bullets !== 0) {
+    if (this.readyToShoot && this.bullets !== 0 && this.roomId) {
       this.bullets--;
       setTimeout(() => {
         this.bullets++;

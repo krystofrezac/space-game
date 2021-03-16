@@ -7,6 +7,10 @@ import MenuScene from "./scenes/menu";
 
 const phaserConfig: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
+  parent: "phaser-container",
+  dom: {
+    createContainer: true,
+  },
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,

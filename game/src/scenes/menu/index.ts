@@ -7,10 +7,6 @@ class MenuScene extends Phaser.Scene {
 
   create(): void {
     create(this);
-    setTimeout(() => {
-      this.scene.launch("game");
-      this.scene.stop("menu");
-    }, 2_000);
   }
 }
 

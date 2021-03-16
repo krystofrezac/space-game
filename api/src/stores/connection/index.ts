@@ -14,8 +14,8 @@ export class Connection {
 
 let connections: Connection[] = [];
 
-export const getConnections = (): Connection[] => {
-  return connections;
+export const getConnection = (id: string): Connection | undefined => {
+  return connections.find(c => c.id === id);
 };
 
 export const addConnection = (connection: Connection): void => {

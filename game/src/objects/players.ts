@@ -36,7 +36,7 @@ const checkPlayers = (
       ),
       text: phaser.add.text(0, 0, `${newPlayer.lives}`, {
         font: "4em",
-        fill: "#ff0044",
+        color: "#ff0044",
         align: "center",
       }),
     });

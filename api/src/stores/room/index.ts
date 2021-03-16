@@ -1,17 +1,14 @@
-import { nanoid } from 'nanoid';
 import matter from 'matter-js';
 
 import { getPlayer, Player } from 'stores/players';
 
 import config from '../../config';
 import customNanoid from '../../customNanoid';
-import { Bullet, getBullet, getBullets } from '../bullets';
 
 export class Room {
-  constructor(options: { name: string }) {
+  constructor() {
     this.id = customNanoid();
     this.connected = 0;
-    this.name = options.name;
 
     const engine = matter.Engine.create();
     engine.world.gravity.y = 0;
@@ -108,8 +105,6 @@ export class Room {
   }
 
   id: string;
-
-  name: string;
 
   connected: number;
 
