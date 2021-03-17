@@ -3,7 +3,7 @@ import Phaser from "phaser";
 import config from "../config";
 import { getPlayer } from "../stores/player";
 
-const grids: Phaser.GameObjects.Grid[] = [];
+let grids: Phaser.GameObjects.Grid[] = [];
 
 let gridIndex = 0;
 export const createGrid = (
@@ -104,4 +104,11 @@ export const checkGrids = (phaser: Phaser.Scene): void => {
       1
     );
   });
+};
+
+export const deleteGrids = (): void => {
+  grids.forEach((grid) => {
+    grid.destroy();
+  });
+  grids = [];
 };

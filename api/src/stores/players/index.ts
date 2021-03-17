@@ -36,7 +36,7 @@ export class Player {
     this.direction = 0;
     this.rotation = 0;
     this.readyToShoot = false;
-    this.lives = 100;
+    this.lives = config.maxLives;
     this.hitByBullets = [];
     this.bullets = config.maxBullets;
     this.doneDamage = 0;
@@ -177,7 +177,7 @@ export class Player {
   public hit = (bulletId: string): void => {
     if (!this.hitByBullets.some(b => b === bulletId)) {
       this.lives -= config.objects.bullet.damage;
-      this.hitByBullets.push(bulletId);
+      this.hitByBullets = [...this.hitByBullets, bulletId];
 
       const bullet = getBullet(bulletId);
       if (bullet) {
@@ -186,18 +186,39 @@ export class Player {
 
       if (this.lives <= 0) {
         const args: Died = {
-          doneDamage: 0,
+          doneDamage: this.doneDamage,
+          name: `${this.name}`,
         };
+        this.deleteFromRoom();
         this.getConnection()?.socket.emit(DIED, args);
-        this.delete();
       }
     }
   };
 
-  public delete = (): void => {
-    deletePlayer(this.id);
+  public deleteFromRoom = (): void => {
+    this.direction = 0;
+    this.rotation = 0;
+    this.readyToShoot = false;
+    this.lives = config.maxLives;
+
+    this.bullets = config.maxBullets;
+
+    this.body = getPlayerBody(`PLAYER-${this.id}`);
+
+    // Because one bullet hits multiple times
+    setTimeout(() => {
+      this.hitByBullets = [];
+      this.doneDamage = 0;
+    }, 1000);
+
+    this.roomId = undefined;
     const room = getRoom(`${this.roomId}`);
     if (room) Matter.World.remove(room.engine.world, this.body);
+  };
+
+  public delete = (): void => {
+    this.deleteFromRoom();
+    deletePlayer(this.id);
   };
 
   public addDoneDamage = (): void => {

@@ -17,3 +17,11 @@ export const setPlayer = (newPlayer: Player): void => {
 export const getPlayer = (): Player | undefined => {
   return player;
 };
+
+export const deletePlayer = (): void => {
+  player?.body.destroy();
+  player?.lives.destroy();
+  player?.bullets.destroy();
+  player?.name.destroy();
+  player?.doneDamage.destroy();
+};

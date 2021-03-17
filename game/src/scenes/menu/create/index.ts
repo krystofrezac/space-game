@@ -3,7 +3,7 @@ import Phaser from "phaser";
 import config from "../../../config";
 import start from "../../../network/start";
 
-const create = (phaser: Phaser.Scene): void => {
+const create = (phaser: Phaser.Scene, name: string): void => {
   phaser.add.text(
     config.window.width / 2 - 250,
     config.window.height / 2,
@@ -31,8 +31,11 @@ const create = (phaser: Phaser.Scene): void => {
       "font-size": "30px",
     }
   );
+  const inputDOM = document.getElementsByTagName("input")[0];
+  inputDOM.value = name;
+
   const startButton = phaser.add.text(
-    config.window.width / 2 - 130,
+    config.window.width / 2,
     config.window.height / 2 + 100,
     "start game",
     {
@@ -44,9 +47,10 @@ const create = (phaser: Phaser.Scene): void => {
       stroke: "#ff0044",
     }
   );
+  startButton.setOrigin(0.5, 0.5);
   startButton.setInteractive();
   startButton.on("pointerdown", () => {
-    start(document.getElementsByTagName("input")[0].value, () => {
+    start(inputDOM.value, () => {
       phaser.scene.start("game");
     });
   });

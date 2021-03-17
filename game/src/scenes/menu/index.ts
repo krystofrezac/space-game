@@ -5,8 +5,8 @@ class MenuScene extends Phaser.Scene {
     super("menu");
   }
 
-  create(): void {
-    create(this);
+  create(args: { name?: string }): void {
+    create(this, args.name || "");
   }
 }
 

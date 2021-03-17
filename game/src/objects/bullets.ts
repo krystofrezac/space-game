@@ -41,4 +41,9 @@ const checkBullets = (
   });
 };
 
+export const deleteBullets = (): void => {
+  bullets.forEach((bullet) => bullet.image.destroy());
+  bullets = [];
+};
+
 export default checkBullets;

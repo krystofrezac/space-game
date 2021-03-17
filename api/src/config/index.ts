@@ -5,6 +5,7 @@ const config = {
   maxSpeed: 10,
   acceleration: 0.1,
   maxBullets: 10,
+  maxLives: 10,
   bulletReload: 1_000 * 5,
   visibleArea: {
     width: 3_200,
