@@ -28,8 +28,6 @@ const updatePositions = (args: UpdatePositions): void => {
       .map((s) => `${s.name.padEnd(15).slice(0, 15)} ${s.doneDamage}`)
       .join("\n");
 
-    console.log(args.stats);
-
     stats?.setText(statsText);
     setStats(stats);
   }

@@ -1,5 +1,6 @@
 import matter, { Body } from 'matter-js';
 import DIED, { Died } from '@space-game/shared/resolvers/died';
+import Matter from 'matter-js';
 
 import { Connection, getConnection } from '../connection';
 import config from '../../config';
@@ -113,7 +114,7 @@ export class Player {
       prevAngularVelocity + this.rotation * config.angularAcceleration;
 
     if (Math.abs(angularVelocity) > config.maxAngularSpeed) {
-      return prevAngularVelocity;
+      return config.maxAngularSpeed;
     }
 
     return angularVelocity;
@@ -183,13 +184,20 @@ export class Player {
         getPlayer(bullet.shootBy)?.addDoneDamage();
       }
 
-      if (this.lives < 0) {
+      if (this.lives <= 0) {
         const args: Died = {
           doneDamage: 0,
         };
         this.getConnection()?.socket.emit(DIED, args);
+        this.delete();
       }
     }
+  };
+
+  public delete = (): void => {
+    deletePlayer(this.id);
+    const room = getRoom(`${this.roomId}`);
+    if (room) Matter.World.remove(room.engine.world, this.body);
   };
 
   public addDoneDamage = (): void => {

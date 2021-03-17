@@ -13,7 +13,6 @@ import shoot from './resolvers/shoot';
 import connect from './resolvers/connect';
 import updatePositions from './resolvers/updatePositions';
 import config from './config';
-import { deletePlayer } from './stores/players';
 import start from './resolvers/start';
 
 io.on(CONNECT, (socket: Socket) => {
@@ -22,7 +21,7 @@ io.on(CONNECT, (socket: Socket) => {
   socket.on('disconnect', () => {
     socket.disconnect();
     deleteConnection(player.connectionId);
-    deletePlayer(player.id);
+    player.delete();
   });
 
   socket.on(MOVE, move(player));

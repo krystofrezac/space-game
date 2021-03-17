@@ -20,6 +20,7 @@ const checkPlayers = (
   inactivePlayers.forEach((inactivePlayer) => {
     inactivePlayer.image.destroy();
     inactivePlayer.lives.destroy();
+    inactivePlayer.name.destroy();
     players = players.filter((p) => p.id !== inactivePlayer.id);
   });
 
