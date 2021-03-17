@@ -4,6 +4,7 @@ import Phaser from "phaser";
 import { getPlayer, setPlayer } from "../stores/player";
 import { setUpdatePlayers } from "../stores/updatePlayers";
 import { setUpdateBullets } from "../stores/updateBullets";
+import { getStats, setStats } from "../stores/stats";
 
 const updatePositions = (args: UpdatePositions): void => {
   const player = getPlayer();
@@ -19,6 +20,19 @@ const updatePositions = (args: UpdatePositions): void => {
 
   setUpdatePlayers(args.players);
   setUpdateBullets(args.bullets);
+
+  const stats = getStats();
+  if (stats) {
+    let statsText = "player          done damage\n";
+    statsText += args.stats
+      .map((s) => `${s.name.padEnd(15).slice(0, 15)} ${s.doneDamage}`)
+      .join("\n");
+
+    console.log(args.stats);
+
+    stats?.setText(statsText);
+    setStats(stats);
+  }
 };
 
 export default updatePositions;

@@ -1,5 +1,6 @@
 import { setPlayer } from "../../../stores/player";
 import config from "../../../config";
+import { setStats } from "../../../stores/stats";
 
 function create(phaser: Phaser.Scene): void {
   const player = phaser.add.image(0, 0, "player");
@@ -11,7 +12,7 @@ function create(phaser: Phaser.Scene): void {
     color: "#ff0044",
     align: "center",
   });
-  const name = phaser.add.text(0, 0, "ahoj", {
+  const name = phaser.add.text(0, 0, "", {
     font: "4em",
     color: "#ff0044",
     align: "center",
@@ -44,6 +45,22 @@ function create(phaser: Phaser.Scene): void {
   doneDamage.scrollFactorY = 0;
 
   setPlayer({ body: player, lives, bullets, name, doneDamage });
+
+  const stats = phaser.add.text(
+    config.window.width,
+    -config.window.height / 2 + 20,
+    "",
+    {
+      font: "4em",
+      color: "#ff0044",
+      fixedWidth: 800,
+    }
+  );
+
+  stats.scrollFactorX = 0;
+  stats.scrollFactorY = 0;
+
+  setStats(stats);
 }
 
 export default create;

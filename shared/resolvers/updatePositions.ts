@@ -14,6 +14,8 @@ export type UpdatePositionsBullets = {
   angle: number;
 }[];
 
+export type Stats = { name: string; doneDamage: number }[];
+
 export interface UpdatePositions {
   player: {
     position: { x: number; y: number };
@@ -25,6 +27,7 @@ export interface UpdatePositions {
   };
   players: UpdatePositionsPlayers;
   bullets: UpdatePositionsBullets;
+  stats: Stats;
 }
 
 export default UPDATE_POSITIONS;

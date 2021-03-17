@@ -41,6 +41,16 @@ const updatePositions = (): void => {
   playersByRoom.forEach(groupedPlayers => {
     const roomBullets = bulletsByRoom.get(`${groupedPlayers[0]?.roomId}`) || [];
 
+    const stats = groupedPlayers
+      .sort((p1, p2) => {
+        if (p1.doneDamage > p2.doneDamage) return -1;
+        if (p1.doneDamage < p2.doneDamage) return 1;
+
+        return 0;
+      })
+      .slice(0, 5)
+      .map(p => ({ name: `${p.name}`, doneDamage: p.doneDamage }));
+
     groupedPlayers.forEach(player => {
       player.shoot();
       const visiblePlayers = groupedPlayers.filter(visiblePlayer => {
@@ -75,6 +85,7 @@ const updatePositions = (): void => {
           position: bullet.body.position,
           angle: bullet.body.angle,
         })),
+        stats,
       };
 
       player.getConnection()?.socket.emit(UPDATE_POSITIONS, args);
