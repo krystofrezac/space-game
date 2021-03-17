@@ -4,7 +4,8 @@ import Phaser from "phaser";
 let players: {
   id: string;
   image: Phaser.GameObjects.Image;
-  text: Phaser.GameObjects.Text;
+  lives: Phaser.GameObjects.Text;
+  name: Phaser.GameObjects.Text;
 }[] = [];
 
 const checkPlayers = (
@@ -18,7 +19,7 @@ const checkPlayers = (
 
   inactivePlayers.forEach((inactivePlayer) => {
     inactivePlayer.image.destroy();
-    inactivePlayer.text.destroy();
+    inactivePlayer.lives.destroy();
     players = players.filter((p) => p.id !== inactivePlayer.id);
   });
 
@@ -34,10 +35,16 @@ const checkPlayers = (
         newPlayer.position.y,
         "enemy"
       ),
-      text: phaser.add.text(0, 0, `${newPlayer.lives}`, {
+      lives: phaser.add.text(0, 0, `${newPlayer.lives}`, {
         font: "4em",
         color: "#ff0044",
         align: "center",
+      }),
+      name: phaser.add.text(0, 0, newPlayer.name, {
+        font: "4em",
+        color: "#ff0044",
+        align: "center",
+        fixedWidth: 600,
       }),
     });
   });
@@ -52,9 +59,11 @@ const checkPlayers = (
         updatePlayer.position.y
       );
       player.image.setAngle(Phaser.Math.RadToDeg(updatePlayer.angle));
-      player.text.setText(`${updatePlayer.lives}`);
-      player.text.x = player.image.x - 50;
-      player.text.y = player.image.y + 240;
+      player.lives.setText(`${updatePlayer.lives}`);
+      player.lives.x = player.image.x - 50;
+      player.lives.y = player.image.y + 240;
+      player.name.x = player.image.x - 310;
+      player.name.y = player.image.y + 290;
     }
   });
 };

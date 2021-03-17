@@ -20,6 +20,9 @@ function update(phaser: Phaser.Scene): void {
   if (player) {
     player.lives.x = player.body.x - 50;
     player.lives.y = player.body.y + 240;
+
+    player.name.x = player.body.x - 310;
+    player.name.y = player.body.y + 290;
   }
 
   const leftKey = phaser.input.keyboard.addKey(

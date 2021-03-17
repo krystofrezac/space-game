@@ -60,12 +60,14 @@ const updatePositions = (): void => {
           angle: player.body.angle,
           lives: player.lives,
           bullets: player.bullets,
+          name: `${player.name}`,
         },
         players: visiblePlayers.map(visiblePlayer => ({
           id: visiblePlayer.id,
           position: visiblePlayer.getDisplayPosition(),
           angle: visiblePlayer.body.angle,
           lives: visiblePlayer.lives,
+          name: `${visiblePlayer.name}`,
         })),
         bullets: roomBullets.map(bullet => ({
           id: bullet.id,

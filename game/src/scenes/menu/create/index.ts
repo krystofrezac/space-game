@@ -14,7 +14,7 @@ const create = (phaser: Phaser.Scene): void => {
       align: "center",
     }
   );
-  phaser.add.dom(
+  const input = phaser.add.dom(
     config.window.width / 2 + 110,
     config.window.height / 2 + 20,
     "input",
@@ -45,11 +45,11 @@ const create = (phaser: Phaser.Scene): void => {
     }
   );
   startButton.setInteractive();
-  startButton.on("pointerdown", () =>
-    start(startButton.text, () => {
+  startButton.on("pointerdown", () => {
+    start(document.getElementsByTagName("input")[0].value, () => {
       phaser.scene.start("game");
-    })
-  );
+    });
+  });
 };
 
 export default create;

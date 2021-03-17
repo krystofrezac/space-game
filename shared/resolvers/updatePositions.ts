@@ -5,6 +5,7 @@ export type UpdatePositionsPlayers = {
   position: { x: number; y: number };
   angle: number;
   lives: number;
+  name: string;
 }[];
 
 export type UpdatePositionsBullets = {
@@ -19,6 +20,7 @@ export interface UpdatePositions {
     angle: number;
     lives: number;
     bullets: number;
+    name: string;
   };
   players: UpdatePositionsPlayers;
   bullets: UpdatePositionsBullets;

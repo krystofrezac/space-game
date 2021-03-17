@@ -11,6 +11,12 @@ function create(phaser: Phaser.Scene): void {
     color: "#ff0044",
     align: "center",
   });
+  const name = phaser.add.text(0, 0, "ahoj", {
+    font: "4em",
+    color: "#ff0044",
+    align: "center",
+    fixedWidth: 600,
+  });
   const bullets = phaser.add.text(
     -config.window.width / 2 + 20,
     -config.window.height / 2 + 20,
@@ -24,7 +30,7 @@ function create(phaser: Phaser.Scene): void {
   bullets.scrollFactorX = 0;
   bullets.scrollFactorY = 0;
 
-  setPlayer({ body: player, lives, bullets });
+  setPlayer({ body: player, lives, bullets, name });
 }
 
 export default create;
