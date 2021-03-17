@@ -4,7 +4,24 @@ import { getPlayer, Player } from 'stores/players';
 
 import config from '../../config';
 import customNanoid from '../../customNanoid';
-import { Bullet, getBullet } from '../bullets';
+
+let rooms: Room[] = [];
+
+export const getRooms = (): Room[] => {
+  return rooms;
+};
+
+export const addRoom = (room: Room): void => {
+  rooms.push(room);
+};
+
+export const getRoom = (id: string): Room | undefined => {
+  return rooms.find(room => room.id === id);
+};
+
+export const deleteRoom = (id: string): void => {
+  rooms = rooms.filter(room => room.id !== id);
+};
 
 export class Room {
   constructor() {
@@ -112,18 +129,16 @@ export class Room {
   connected: number;
 
   engine: matter.Engine;
+
+  public connectTo = (): void => {
+    this.connected++;
+  };
+
+  public disconnectFrom = (): void => {
+    this.connected--;
+    console.log('disconnecting', this.id, this.connected);
+    if (this.connected <= 0) {
+      deleteRoom(this.id);
+    }
+  };
 }
-
-const rooms: Room[] = [];
-
-export const getRooms = (): Room[] => {
-  return rooms;
-};
-
-export const addRoom = (room: Room): void => {
-  rooms.push(room);
-};
-
-export const getRoom = (id: string): Room | undefined => {
-  return rooms.find(room => room.id === id);
-};

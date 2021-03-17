@@ -211,9 +211,12 @@ export class Player {
       this.doneDamage = 0;
     }, 1000);
 
-    this.roomId = undefined;
     const room = getRoom(`${this.roomId}`);
-    if (room) Matter.World.remove(room.engine.world, this.body);
+    if (room) {
+      Matter.World.remove(room.engine.world, this.body);
+      room.disconnectFrom();
+    }
+    this.roomId = undefined;
   };
 
   public delete = (): void => {

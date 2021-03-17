@@ -7,6 +7,7 @@ const config = {
   maxBullets: 10,
   maxLives: 10,
   bulletReload: 1_000 * 5,
+  roomSize: 2,
   visibleArea: {
     width: 3_200,
     height: 1_600,
