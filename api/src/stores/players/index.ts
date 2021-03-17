@@ -1,12 +1,31 @@
 import matter, { Body } from 'matter-js';
+import DIED, { Died } from '@space-game/shared/resolvers/died';
 
 import { Connection, getConnection } from '../connection';
 import config from '../../config';
-import { addBullet, Bullet } from '../bullets';
+import { addBullet, Bullet, getBullet } from '../bullets';
 import customNanoid from '../../customNanoid';
 import { getRoom } from '../room';
 
 import { getPlayerBody, playerBodyCenter } from './body';
+
+let players: Player[] = [];
+
+export const getPlayers = (): Player[] => {
+  return players;
+};
+
+export const getPlayer = (id: string): Player | undefined => {
+  return players.find(p => p.id === id);
+};
+
+export const addPlayer = (player: Player): void => {
+  players.push(player);
+};
+
+export const deletePlayer = (id: string): void => {
+  players = players.filter(player => player.id !== id);
+};
 
 export class Player {
   constructor(args: { connectionId: string }) {
@@ -19,6 +38,7 @@ export class Player {
     this.lives = 100;
     this.hitByBullets = [];
     this.bullets = config.maxBullets;
+    this.doneDamage = 0;
 
     this.body = getPlayerBody(`PLAYER-${this.id}`);
   }
@@ -40,6 +60,8 @@ export class Player {
   public readyToShoot: boolean;
 
   public lives: number;
+
+  public doneDamage: number;
 
   public hitByBullets: string[];
 
@@ -144,6 +166,7 @@ export class Player {
         x: position.x,
         y: position.y,
         angle: this.body.angle,
+        shootBy: this.id,
       });
       addBullet(bullet);
       this.readyToShoot = false;
@@ -154,24 +177,22 @@ export class Player {
     if (!this.hitByBullets.some(b => b === bulletId)) {
       this.lives -= config.objects.bullet.damage;
       this.hitByBullets.push(bulletId);
+
+      const bullet = getBullet(bulletId);
+      if (bullet) {
+        getPlayer(bullet.shootBy)?.addDoneDamage();
+      }
+
+      if (this.lives < 0) {
+        const args: Died = {
+          doneDamage: 0,
+        };
+        this.getConnection()?.socket.emit(DIED, args);
+      }
     }
   };
+
+  public addDoneDamage = (): void => {
+    this.doneDamage += config.objects.bullet.damage;
+  };
 }
-
-let players: Player[] = [];
-
-export const getPlayers = (): Player[] => {
-  return players;
-};
-
-export const getPlayer = (id: string): Player | undefined => {
-  return players.find(p => p.id === id);
-};
-
-export const addPlayer = (player: Player): void => {
-  players.push(player);
-};
-
-export const deletePlayer = (id: string): void => {
-  players = players.filter(player => player.id !== id);
-};

@@ -4,6 +4,7 @@ import { getPlayer, Player } from 'stores/players';
 
 import config from '../../config';
 import customNanoid from '../../customNanoid';
+import { Bullet, getBullet } from '../bullets';
 
 export class Room {
   constructor() {
@@ -88,7 +89,7 @@ export class Room {
             (typeA === 'PLAYER' || typeB === 'PLAYER')
           ) {
             let player: Player | undefined;
-            let bulletId: string;
+            let bulletId: string | undefined;
             if (typeA === 'PLAYER') {
               player = getPlayer(idA);
               bulletId = idB;
@@ -97,7 +98,9 @@ export class Room {
               bulletId = idA;
             }
 
-            if (player) player.hit(bulletId);
+            if (player && bulletId) {
+              player.hit(bulletId);
+            }
           }
         }
       });

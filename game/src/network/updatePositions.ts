@@ -13,6 +13,7 @@ const updatePositions = (args: UpdatePositions): void => {
     player.lives.setText(`${args.player.lives}`);
     player.name.setText(args.player.name);
     player.bullets.setText(`Bullets: ${args.player.bullets}`);
+    player.doneDamage.setText(`Done damage: ${args.player.doneDamage}`);
     setPlayer(player);
   }
 

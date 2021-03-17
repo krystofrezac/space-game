@@ -30,7 +30,20 @@ function create(phaser: Phaser.Scene): void {
   bullets.scrollFactorX = 0;
   bullets.scrollFactorY = 0;
 
-  setPlayer({ body: player, lives, bullets, name });
+  const doneDamage = phaser.add.text(
+    -config.window.width / 2 + 20,
+    -config.window.height / 2 + 70,
+    "0",
+    {
+      font: "4em",
+      color: "#ff0044",
+      align: "center",
+    }
+  );
+  doneDamage.scrollFactorX = 0;
+  doneDamage.scrollFactorY = 0;
+
+  setPlayer({ body: player, lives, bullets, name, doneDamage });
 }
 
 export default create;

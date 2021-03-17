@@ -61,6 +61,7 @@ const updatePositions = (): void => {
           lives: player.lives,
           bullets: player.bullets,
           name: `${player.name}`,
+          doneDamage: player.doneDamage,
         },
         players: visiblePlayers.map(visiblePlayer => ({
           id: visiblePlayer.id,

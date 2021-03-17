@@ -5,6 +5,7 @@ interface Player {
   lives: Phaser.GameObjects.Text;
   bullets: Phaser.GameObjects.Text;
   name: Phaser.GameObjects.Text;
+  doneDamage: Phaser.GameObjects.Text;
 }
 
 let player: Player | undefined;

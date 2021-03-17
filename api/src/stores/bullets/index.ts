@@ -1,5 +1,4 @@
 import matter from 'matter-js';
-import { nanoid } from 'nanoid';
 
 import config from '../../config';
 import { getRoom, Room } from '../room';
@@ -20,9 +19,16 @@ export const deleteBullet = (id: string): void => {
 };
 
 export class Bullet {
-  constructor(args: { x: number; y: number; angle: number; roomId: string }) {
+  constructor(args: {
+    x: number;
+    y: number;
+    angle: number;
+    roomId: string;
+    shootBy: string;
+  }) {
     this.id = customNanoid();
     this.roomId = args.roomId;
+    this.shootBy = args.shootBy;
     const bullet = matter.Bodies.circle(
       args.x,
       args.y,
@@ -60,6 +66,8 @@ export class Bullet {
   public roomId: string;
 
   public body: matter.Body;
+
+  public shootBy: string;
 
   private delete = (room: Room): void => {
     deleteBullet(this.id);

@@ -21,6 +21,7 @@ export interface UpdatePositions {
     lives: number;
     bullets: number;
     name: string;
+    doneDamage: number;
   };
   players: UpdatePositionsPlayers;
   bullets: UpdatePositionsBullets;
