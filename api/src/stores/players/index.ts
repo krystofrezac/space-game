@@ -16,6 +16,10 @@ export const getPlayers = (): Player[] => {
   return players;
 };
 
+export const getPlayersByRoom = (roomId: string): Player[] => {
+  return players.filter(p => p.roomId === roomId);
+};
+
 export const getPlayer = (id: string): Player | undefined => {
   return players.find(p => p.id === id);
 };
@@ -77,6 +81,23 @@ export class Player {
     if (room) {
       matter.World.add(room.engine.world, this.body);
       this.roomId = roomId;
+
+      const roomPlayers = getPlayersByRoom(roomId);
+
+      const position = matter.Vector.create(0, 0);
+      do {
+        position.x = Math.random() * config.borders.width;
+        position.y = Math.random() * config.borders.height;
+      } while (
+        roomPlayers.some(
+          p =>
+            matter.Vector.magnitude(
+              matter.Vector.sub(p.body.position, position),
+            ) < config.spawnFreeSpace,
+        )
+      );
+
+      matter.Body.setPosition(this.body, position);
     }
   };
 
