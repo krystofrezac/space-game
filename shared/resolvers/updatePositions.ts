@@ -28,6 +28,7 @@ export interface UpdatePositions {
   players: UpdatePositionsPlayers;
   bullets: UpdatePositionsBullets;
   stats: Stats;
+  bestPlayerAngle?: number;
 }
 
 export default UPDATE_POSITIONS;

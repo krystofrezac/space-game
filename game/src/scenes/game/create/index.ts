@@ -1,6 +1,7 @@
 import { setPlayer } from "../../../stores/player";
 import config from "../../../config";
 import { setStats } from "../../../stores/stats";
+import { setArrow } from "../../../stores/arrow";
 
 function create(phaser: Phaser.Scene): void {
   const player = phaser.add.image(0, 0, "player");
@@ -61,6 +62,10 @@ function create(phaser: Phaser.Scene): void {
   stats.scrollFactorY = 0;
 
   setStats(stats);
+
+  const arrow = phaser.add.sprite(0, 0, "arrow");
+  arrow.setVisible(false);
+  setArrow(arrow);
 }
 
 export default create;

@@ -9,6 +9,7 @@ const config = {
   bulletReload: 1_000 * 5,
   roomSize: 20,
   spawnFreeSpace: 1_600,
+  bestPlayerArrowDistance: 1_000,
   visibleArea: {
     width: 3_200,
     height: 1_600,

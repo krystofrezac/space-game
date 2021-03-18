@@ -10,6 +10,7 @@ const config = {
   depths: {
     grid: -10,
   },
+  arrowDistance: 500,
 };
 
 export default config;

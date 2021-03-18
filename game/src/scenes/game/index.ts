@@ -16,7 +16,6 @@ class GameScene extends Phaser.Scene {
   }
 
   update(): void {
-    console.log("update");
     update(this);
   }
 }

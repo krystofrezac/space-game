@@ -5,6 +5,8 @@ import { getPlayer, setPlayer } from "../stores/player";
 import { setUpdatePlayers } from "../stores/updatePlayers";
 import { setUpdateBullets } from "../stores/updateBullets";
 import { getStats, setStats } from "../stores/stats";
+import { getArrow } from "../stores/arrow";
+import config from "../config";
 
 const updatePositions = (args: UpdatePositions): void => {
   const player = getPlayer();
@@ -30,6 +32,23 @@ const updatePositions = (args: UpdatePositions): void => {
 
     stats?.setText(statsText);
     setStats(stats);
+  }
+
+  const arrow = getArrow();
+  if (arrow && player) {
+    if (args.bestPlayerAngle) {
+      const arrowPosition = new Phaser.Math.Vector2(config.arrowDistance, 0);
+      arrowPosition.setAngle(args.bestPlayerAngle - Math.PI / 2);
+      arrowPosition.add(
+        new Phaser.Math.Vector2(args.player.position.x, args.player.position.y)
+      );
+
+      arrow.setPosition(arrowPosition.x, arrowPosition.y);
+      arrow.setAngle(Phaser.Math.RadToDeg(args.bestPlayerAngle));
+      arrow?.setVisible(true);
+    } else {
+      arrow?.setVisible(false);
+    }
   }
 };
 

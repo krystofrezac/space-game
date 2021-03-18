@@ -41,18 +41,38 @@ const updatePositions = (): void => {
   playersByRoom.forEach(groupedPlayers => {
     const roomBullets = bulletsByRoom.get(`${groupedPlayers[0]?.roomId}`) || [];
 
-    const stats = groupedPlayers
-      .sort((p1, p2) => {
-        if (p1.doneDamage > p2.doneDamage) return -1;
-        if (p1.doneDamage < p2.doneDamage) return 1;
+    const sortedPlayers = groupedPlayers.sort((p1, p2) => {
+      if (p1.doneDamage > p2.doneDamage) return -1;
+      if (p1.doneDamage < p2.doneDamage) return 1;
 
-        return 0;
-      })
+      return 0;
+    });
+
+    const stats = sortedPlayers
       .slice(0, 5)
       .map(p => ({ name: `${p.name}`, doneDamage: p.doneDamage }));
 
+    const bestPlayer = sortedPlayers[0];
+
     groupedPlayers.forEach(player => {
       player.shoot();
+
+      let bestPlayerAngle: number | undefined;
+      const subVector = matter.Vector.rotate(
+        matter.Vector.sub(bestPlayer.body.position, player.body.position),
+        -Math.PI / 2,
+      );
+
+      if (
+        player.id !== bestPlayer.id &&
+        matter.Vector.magnitude(subVector) >= config.bestPlayerArrowDistance
+      ) {
+        bestPlayerAngle = matter.Vector.angle(
+          subVector,
+          matter.Vector.create(0, 0),
+        );
+      }
+
       const visiblePlayers = groupedPlayers.filter(visiblePlayer => {
         return (
           // TODO visible area
@@ -86,6 +106,7 @@ const updatePositions = (): void => {
           angle: bullet.body.angle,
         })),
         stats,
+        bestPlayerAngle,
       };
 
       player.getConnection()?.socket.emit(UPDATE_POSITIONS, args);

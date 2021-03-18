@@ -86,8 +86,10 @@ export class Player {
 
       const position = matter.Vector.create(0, 0);
       do {
-        position.x = Math.random() * config.borders.width;
-        position.y = Math.random() * config.borders.height;
+        position.x =
+          Math.random() * config.borders.width - config.borders.width / 2;
+        position.y =
+          Math.random() * config.borders.height - config.borders.height / 2;
       } while (
         roomPlayers.some(
           p =>
