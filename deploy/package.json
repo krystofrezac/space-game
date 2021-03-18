@@ -1,0 +1,11 @@
+{
+  "name": "@space-game/deploy",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": "14.15"
+  },
+  "scripts": {
+    "deploy": "bash client.sh"
+  }
+}

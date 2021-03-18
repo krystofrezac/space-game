@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "ISC",
   "scripts": {
-    "fix": "yarn tsc && yarn eslint 'src/**/*.{ts,tsx,js}' --fix"
+    "fix": "yarn tsc && yarn eslint 'resolvers/**/*.{ts,tsx,js}' --fix"
   },
   "devDependencies": {
     "@krystofrezac/coding-standard": "ssh://git@github.com:krystofrezac/coding-standard.git"

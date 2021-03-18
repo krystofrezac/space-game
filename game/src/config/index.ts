@@ -1,4 +1,5 @@
 const config = {
+  apiURL: ":4000",
   window: {
     width: 1600,
     height: 800,

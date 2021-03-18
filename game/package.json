@@ -8,8 +8,7 @@
     "build": "webpack --config webpack/prod.js ",
     "dev": "webpack-dev-server --config webpack/base.js --open",
     "ts": "tsc",
-    "eslint": "eslint 'src/**/*.{ts,tsx,js}' --fix",
-    "fix": "yarn ts --noEmit && yarn eslint"
+    "fix": "yarn ts --noEmit && eslint 'src/**/*.{ts,tsx,js}' --fix"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
