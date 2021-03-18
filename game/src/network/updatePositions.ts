@@ -20,6 +20,7 @@ const updatePositions = (args: UpdatePositions): void => {
     setPlayer(player);
   }
 
+  console.log("players", args.players);
   setUpdatePlayers(args.players);
   setUpdateBullets(args.bullets);
 

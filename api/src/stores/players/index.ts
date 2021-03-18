@@ -152,8 +152,8 @@ export class Player {
     return (
       this.body.position.x >= area.left &&
       this.body.position.x <= area.left + area.width &&
-      this.body.position.y <= area.top &&
-      this.body.position.y >= area.top - area.height
+      this.body.position.y >= area.top &&
+      this.body.position.y <= area.top + area.height
     );
   };
 
@@ -165,7 +165,7 @@ export class Player {
   } => {
     return {
       left: this.body.position.x - config.visibleArea.width / 2,
-      top: this.body.position.y + config.visibleArea.width / 2,
+      top: this.body.position.y - config.visibleArea.height / 2,
       width: config.visibleArea.width,
       height: config.visibleArea.height,
     };

@@ -11,8 +11,8 @@ const config = {
   spawnFreeSpace: 1_600,
   bestPlayerArrowDistance: 1_000,
   visibleArea: {
-    width: 3_200,
-    height: 1_600,
+    width: 3_800,
+    height: 2_200,
   },
   borders: {
     width: 10_000,
