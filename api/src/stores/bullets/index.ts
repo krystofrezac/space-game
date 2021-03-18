@@ -25,6 +25,7 @@ export class Bullet {
     angle: number;
     roomId: string;
     shootBy: string;
+    velocity: matter.Vector;
   }) {
     this.id = customNanoid();
     this.roomId = args.roomId;
@@ -48,6 +49,7 @@ export class Bullet {
 
     let velocity = matter.Vector.create(0, -config.objects.bullet.speed);
     velocity = matter.Vector.rotate(velocity, args.angle);
+    velocity = matter.Vector.add(velocity, args.velocity);
     matter.Body.setVelocity(bullet, velocity);
 
     const room = getRoom(args.roomId);

@@ -190,6 +190,7 @@ export class Player {
         y: position.y,
         angle: this.body.angle,
         shootBy: this.id,
+        velocity: this.body.velocity,
       });
       addBullet(bullet);
       this.readyToShoot = false;

@@ -1,6 +1,6 @@
 echo "=== Build start ==="
 rm -rf ../space-game-deploy/bundled.tar.gz
-cd ./app || exit
+cd ../game || exit
 yarn build || exit
 cd ..
 tar -czf ../space-game-deploy/bundled.tar.gz ./

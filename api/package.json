@@ -8,11 +8,14 @@
   "scripts": {
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/index.ts",
     "fix": "yarn tsc --noEmit && yarn eslint 'src/**/*.{ts,tsx,js}' --fix",
-    "start": "ts-node -r tsconfig-paths/register src/index.ts"
+    "start": "ts-node -r tsconfig-paths/register src/index.ts",
+    "prod:start": "forever start -c ts-node -r tsconfig-paths/register src/index.ts",
+    "prod:stop": "forever stop ts-node -r tsconfig-paths/register src/index.ts"
   },
   "dependencies": {
     "@space-game/shared": "1.0.0",
     "express": "^4.17.1",
+    "forever": "^3.0.4",
     "matter-js": "^0.14.2",
     "nanoid": "^3.1.20",
     "poly-decomp": "^0.3.0",

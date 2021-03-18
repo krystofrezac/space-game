@@ -7,8 +7,6 @@ runWithYarn() {
 cd "/var/www/space-game" || exit
 cd api || exit
 runWithYarn "prod:stop"
-cd ../game || exit
-runWithYarn prod:stop
 
 echo "=== App stopped ==="
 
@@ -22,8 +20,6 @@ tar xf /var/www/space-game-deploy/bundled.tar.gz -C "/var/www/space-game/"
 echo "=== App extracted ==="
 
 cd "/var/www/space-game/api" || exit
-runWithYarn prod:start
-cd ../game || exit
 runWithYarn prod:start
 
 echo "=== App started ==="
