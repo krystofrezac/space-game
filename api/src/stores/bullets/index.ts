@@ -57,7 +57,7 @@ export class Bullet {
       matter.World.add(room.engine.world, bullet);
 
       setTimeout(() => {
-        this.delete(room);
+        this.delete();
       }, config.objects.bullet.ttl);
     }
     this.body = bullet;
@@ -71,8 +71,11 @@ export class Bullet {
 
   public shootBy: string;
 
-  private delete = (room: Room): void => {
+  public delete = (): void => {
+    const room = getRoom(this.roomId);
     deleteBullet(this.id);
-    matter.World.remove(room.engine.world, this.body);
+    if (room) {
+      matter.World.remove(room.engine.world, this.body);
+    }
   };
 }

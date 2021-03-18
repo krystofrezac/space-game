@@ -10,7 +10,7 @@
     "fix": "yarn tsc --noEmit && yarn eslint 'src/**/*.{ts,tsx,js}' --fix",
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
     "prod:start": "forever start -c ts-node -r tsconfig-paths/register src/index.ts",
-    "prod:stop": "forever stop ts-node -r tsconfig-paths/register src/index.ts"
+    "prod:stop": "forever stopall"
   },
   "dependencies": {
     "@space-game/shared": "1.0.0",

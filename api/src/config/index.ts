@@ -5,11 +5,11 @@ const config = {
   maxSpeed: 10,
   acceleration: 0.1,
   maxBullets: 10,
-  maxLives: 20,
+  maxLives: 100,
   bulletReload: 1_000 * 5,
-  roomSize: 20,
+  roomSize: 10,
   spawnFreeSpace: 1_600,
-  bestPlayerArrowDistance: 1_000,
+  bestPlayerArrowDistance: 2_000,
   visibleArea: {
     width: 3_800,
     height: 2_200,
@@ -20,15 +20,15 @@ const config = {
   },
   objects: {
     bullet: {
-      mass: 10_000,
+      mass: 2,
       radius: 32,
       speed: 15,
       createGap: 250,
-      ttl: 1_000 * 10,
+      ttl: 1_000 * 2,
       damage: 10,
     },
     player: {
-      mass: 1,
+      mass: 10,
     },
   },
 };

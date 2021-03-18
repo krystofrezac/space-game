@@ -86,9 +86,13 @@ export class Player {
       const position = matter.Vector.create(0, 0);
       do {
         position.x =
-          Math.random() * config.borders.width - config.borders.width / 2;
+          Math.random() * (config.borders.width - 500) -
+          config.borders.width / 2 +
+          250;
         position.y =
-          Math.random() * config.borders.height - config.borders.height / 2;
+          Math.random() * (config.borders.height - 500) -
+          config.borders.height / 2 +
+          250;
       } while (
         roomPlayers.some(
           p =>
@@ -193,8 +197,8 @@ export class Player {
         velocity: this.body.velocity,
       });
       addBullet(bullet);
-      this.readyToShoot = false;
     }
+    this.readyToShoot = false;
   };
 
   public hit = (bulletId: string): void => {
@@ -206,6 +210,8 @@ export class Player {
       if (bullet) {
         getPlayer(bullet.shootBy)?.addDoneDamage();
       }
+
+      getBullet(bulletId)?.delete();
 
       if (this.lives <= 0) {
         const args: Died = {
