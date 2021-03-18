@@ -1,5 +1,5 @@
 # Space game
-It's small game that I created as part of my school project. I tried to do it as much realistic as I could, so there is no air friction, gravity and bullet speed is relative to rocket speed.
+It's small game that I created as part of my school project. I tried to do it as much realistic as I could, so there is no air friction, no gravity and bullet speed is relative to rocket speed.
 
 ## Installation
 Just run `yarn install` in root folder.
