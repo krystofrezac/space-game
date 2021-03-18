@@ -5,7 +5,7 @@ const config = {
   maxSpeed: 10,
   acceleration: 0.1,
   maxBullets: 10,
-  maxLives: 100,
+  maxLives: 20,
   bulletReload: 1_000 * 5,
   roomSize: 20,
   spawnFreeSpace: 1_600,

@@ -198,7 +198,7 @@ export class Player {
   };
 
   public hit = (bulletId: string): void => {
-    if (!this.hitByBullets.some(b => b === bulletId)) {
+    if (!this.hitByBullets.some(b => b === bulletId) && this.lives > 0) {
       this.lives -= config.objects.bullet.damage;
       this.hitByBullets = [...this.hitByBullets, bulletId];
 
@@ -222,7 +222,6 @@ export class Player {
     this.direction = 0;
     this.rotation = 0;
     this.readyToShoot = false;
-    this.lives = config.maxLives;
 
     this.bullets = config.maxBullets;
 
@@ -232,6 +231,7 @@ export class Player {
     setTimeout(() => {
       this.hitByBullets = [];
       this.doneDamage = 0;
+      this.lives = config.maxLives;
     }, 1000);
 
     const room = getRoom(`${this.roomId}`);
