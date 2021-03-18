@@ -1,7 +1,6 @@
 import matter from 'matter-js';
 
-import { getPlayer, Player } from 'stores/players';
-
+import { getPlayer, Player } from '../players';
 import config from '../../config';
 import customNanoid from '../../customNanoid';
 
