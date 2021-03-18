@@ -35,5 +35,6 @@ setInterval(() => {
 }, config.delta);
 
 server.listen(4000, () => {
+  // eslint-disable-next-line no-console
   console.log('server is running on port 4000');
 });

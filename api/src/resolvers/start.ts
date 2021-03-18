@@ -10,11 +10,6 @@ const start = (player: Player) => (
 ): void => {
   const rooms = getRooms();
 
-  console.log(
-    'rooms',
-    rooms.map(r => ({ id: r.id, connected: r.connected })),
-  );
-
   let selectedRoom = rooms.find(room => room.connected < config.roomSize);
   if (!selectedRoom) {
     const newRoom = new Room();

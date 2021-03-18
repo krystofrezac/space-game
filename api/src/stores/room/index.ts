@@ -136,7 +136,6 @@ export class Room {
 
   public disconnectFrom = (): void => {
     this.connected--;
-    console.log('disconnecting', this.id, this.connected);
     if (this.connected <= 0) {
       deleteRoom(this.id);
     }

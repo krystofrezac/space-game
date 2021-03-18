@@ -73,16 +73,6 @@ const updatePositions = (): void => {
         );
       }
 
-      console.log(
-        'visibleArea',
-        player.id,
-        {
-          ...player.body.position,
-          a: '             ',
-          b: '                    ',
-        },
-        player.getVisibleArea(),
-      );
       const visiblePlayers = groupedPlayers.filter(visiblePlayer => {
         return (
           // TODO visible area

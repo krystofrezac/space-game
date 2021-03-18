@@ -9,7 +9,7 @@
     "dev": "webpack-dev-server --config webpack/base.js --open",
     "ts": "tsc",
     "eslint": "eslint 'src/**/*.{ts,tsx,js}' --fix",
-    "fix": "yarn ts && yarn eslint"
+    "fix": "yarn ts --noEmit && yarn eslint"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",

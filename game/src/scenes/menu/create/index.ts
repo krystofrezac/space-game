@@ -14,7 +14,7 @@ const create = (phaser: Phaser.Scene, name: string): void => {
       align: "center",
     }
   );
-  const input = phaser.add.dom(
+  phaser.add.dom(
     config.window.width / 2 + 110,
     config.window.height / 2 + 20,
     "input",

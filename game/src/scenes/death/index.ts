@@ -1,7 +1,6 @@
 import { Died } from "@space-game/shared/resolvers/died";
 
 import config from "../../config/index";
-import start from "../../network/start";
 
 class DeathScene extends Phaser.Scene {
   constructor() {

@@ -1,6 +1,5 @@
 import matter, { Body } from 'matter-js';
 import DIED, { Died } from '@space-game/shared/resolvers/died';
-import Matter from 'matter-js';
 
 import { Connection, getConnection } from '../connection';
 import config from '../../config';
@@ -236,7 +235,7 @@ export class Player {
 
     const room = getRoom(`${this.roomId}`);
     if (room) {
-      Matter.World.remove(room.engine.world, this.body);
+      matter.World.remove(room.engine.world, this.body);
       room.disconnectFrom();
     }
     this.roomId = undefined;
