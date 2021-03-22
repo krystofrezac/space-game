@@ -11,7 +11,7 @@ class DeathScene extends Phaser.Scene {
     const title = this.add.text(
       config.window.width / 2,
       config.window.height / 2 - 50,
-      "You died",
+      `You were killed by ${args.killedBy}`,
       {
         font: "10em",
         color: "#ff0044",

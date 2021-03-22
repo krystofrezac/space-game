@@ -178,7 +178,7 @@ export class Player {
     if (this.readyToShoot && this.bullets !== 0 && this.roomId) {
       this.bullets--;
       setTimeout(() => {
-        this.bullets++;
+        if (this.bullets < config.maxBullets) this.bullets++;
       }, config.bulletReload);
 
       const position = matter.Vector.add(
@@ -207,8 +207,14 @@ export class Player {
       this.hitByBullets = [...this.hitByBullets, bulletId];
 
       const bullet = getBullet(bulletId);
+
+      let killedBy = '';
       if (bullet) {
-        getPlayer(bullet.shootBy)?.addDoneDamage();
+        const player = getPlayer(bullet.shootBy);
+        if (player) {
+          player.addDoneDamage();
+          killedBy = player.name;
+        }
       }
 
       getBullet(bulletId)?.delete();
@@ -217,6 +223,7 @@ export class Player {
         const args: Died = {
           doneDamage: this.doneDamage,
           name: `${this.name}`,
+          killedBy,
         };
         this.deleteFromRoom();
         this.getConnection()?.socket.emit(DIED, args);
