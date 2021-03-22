@@ -213,7 +213,7 @@ export class Player {
         const player = getPlayer(bullet.shootBy);
         if (player) {
           player.addDoneDamage();
-          killedBy = player.name;
+          killedBy = `${player.name}`;
         }
       }
 
