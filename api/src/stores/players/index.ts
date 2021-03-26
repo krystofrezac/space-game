@@ -76,6 +76,8 @@ export class Player {
   };
 
   public addToRoom = (roomId: string): void => {
+    this.body = getPlayerBody(`PLAYER-${this.id}`);
+
     const room = getRoom(roomId);
     if (room) {
       matter.World.add(room.engine.world, this.body);
@@ -103,6 +105,16 @@ export class Player {
       );
 
       matter.Body.setPosition(this.body, position);
+
+      this.lives = config.maxLives;
+      this.hitByBullets = [];
+      this.doneDamage = 0;
+
+      this.direction = 0;
+      this.rotation = 0;
+      this.readyToShoot = false;
+
+      this.bullets = config.maxBullets;
     }
   };
 
@@ -232,21 +244,6 @@ export class Player {
   };
 
   public deleteFromRoom = (): void => {
-    this.direction = 0;
-    this.rotation = 0;
-    this.readyToShoot = false;
-
-    this.bullets = config.maxBullets;
-
-    this.body = getPlayerBody(`PLAYER-${this.id}`);
-
-    // Because one bullet hits multiple times
-    setTimeout(() => {
-      this.hitByBullets = [];
-      this.doneDamage = 0;
-      this.lives = config.maxLives;
-    }, 1000);
-
     const room = getRoom(`${this.roomId}`);
     if (room) {
       matter.World.remove(room.engine.world, this.body);

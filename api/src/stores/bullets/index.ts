@@ -73,9 +73,9 @@ export class Bullet {
 
   public delete = (): void => {
     const room = getRoom(this.roomId);
-    deleteBullet(this.id);
     if (room) {
       matter.World.remove(room.engine.world, this.body);
     }
+    deleteBullet(this.id);
   };
 }
