@@ -5,7 +5,5 @@
   "scripts": {
     "fix": "yarn tsc && yarn eslint 'resolvers/**/*.{ts,tsx,js}' --fix"
   },
-  "devDependencies": {
-    "@krystofrezac/coding-standard": "ssh://git@github.com:krystofrezac/coding-standard.git"
-  }
+  "devDependencies": {}
 }

@@ -23,7 +23,6 @@
     "socket.io": "^3.0.1"
   },
   "devDependencies": {
-    "@krystofrezac/coding-standard": "ssh://git@github.com:krystofrezac/coding-standard.git",
     "@types/express": "^4.17.9",
     "@types/matter-js": "^0.14.6",
     "@types/node": "^14.14.7",

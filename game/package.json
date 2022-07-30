@@ -14,7 +14,6 @@
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-typescript": "^7.12.1",
-    "@krystofrezac/coding-standard": "ssh://git@github.com:krystofrezac/coding-standard.git",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "file-loader": "^4.2.0",
