@@ -1,0 +1,8 @@
+FROM node:12.18.3-alpine3.12 AS builder
+WORKDIR /app
+
+COPY . .
+RUN yarn install --frozen-lockfile
+RUN yarn --cwd game prod:build
+
+CMD [ "yarn", "--cwd","game", "prod:start" ]

@@ -9,8 +9,7 @@
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/index.ts",
     "fix": "yarn tsc --noEmit && yarn eslint 'src/**/*.{ts,tsx,js}' --fix",
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
-    "prod:start": "forever start -c ts-node -r tsconfig-paths/register src/index.ts",
-    "prod:stop": "forever stopall"
+    "prod:start": "ts-node --transpile-only -r tsconfig-paths/register src/index.ts"
   },
   "dependencies": {
     "@space-game/shared": "1.0.0",

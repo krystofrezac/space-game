@@ -1,5 +1,5 @@
 const config = {
-  apiURL: "161.35.208.81",
+  apiURL: "api.space-game.krystof-rezac.cz",
   window: {
     width: 1600,
     height: 800,

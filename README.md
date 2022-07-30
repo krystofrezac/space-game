@@ -1,4 +1,6 @@
 # Space game
+[:eyes: Check it out here](http://space-game.krystof-rezac.cz/)
+
 It's small game that I created as part of my school project. I tried to do it as much realistic as I could, so there is no air friction, no gravity and bullet speed is relative to rocket speed.
 
 ## Installation

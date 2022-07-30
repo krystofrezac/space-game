@@ -5,7 +5,8 @@
     "node": "12.18.3"
   },
   "scripts": {
-    "build": "webpack --config webpack/prod.js ",
+    "prod:build": "webpack --config webpack/prod.js ",
+    "prod:start": "http-server dist",
     "dev": "webpack-dev-server --config webpack/base.js --open",
     "ts": "tsc",
     "fix": "yarn ts --noEmit && eslint 'src/**/*.{ts,tsx,js}' --fix"
@@ -29,6 +30,7 @@
   },
   "dependencies": {
     "@space-game/shared": "1.0.0",
+    "http-server": "^14.1.1",
     "phaser": "^3.20.1",
     "socket.io-client": "^3.0.1"
   }

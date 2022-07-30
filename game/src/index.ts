@@ -6,6 +6,7 @@ import GameScene from "./scenes/game";
 import MenuScene from "./scenes/menu";
 import DeathScene from "./scenes/death";
 
+
 const phaserConfig: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   parent: "phaser-container",
