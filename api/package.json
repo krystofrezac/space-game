@@ -2,9 +2,6 @@
   "name": "@space-game/api",
   "version": "1.0.0",
   "main": "src/old/index.ts",
-  "engines": {
-    "node": "12.18.3"
-  },
   "scripts": {
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/index.ts",
     "fix": "yarn tsc --noEmit && yarn eslint 'src/**/*.{ts,tsx,js}' --fix",

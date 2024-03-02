@@ -1,9 +1,6 @@
 {
   "name": "@space-game/game",
   "version": "1.0.0",
-  "engines": {
-    "node": "12.18.3"
-  },
   "scripts": {
     "prod:build": "webpack --config webpack/prod.js ",
     "prod:start": "http-server dist",
